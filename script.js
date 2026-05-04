@@ -427,3 +427,52 @@ console.log(
   "%cDesigned with passion and attention to detail",
   "font-size: 12px; color: #6B6B6B;",
 );
+// ============================================
+// Inline Carousel
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const carousels = document.querySelectorAll(".inline-carousel");
+
+  carousels.forEach((carousel) => {
+    const slides = carousel.querySelectorAll(".carousel-slide");
+    const dots = carousel.querySelectorAll(".dot");
+    const prevBtn = carousel.querySelector(".prev-btn");
+    const nextBtn = carousel.querySelector(".next-btn");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      // Remove active class from all slides and dots
+      slides.forEach((slide) => slide.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      // Add active class to current slide and dot
+      slides[index].classList.add("active");
+      dots[index].classList.add("active");
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      });
+    });
+
+    // Optional: Auto-advance every 5 seconds
+    // setInterval(nextSlide, 5000);
+  });
+});
