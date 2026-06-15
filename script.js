@@ -476,3 +476,49 @@ document.addEventListener("DOMContentLoaded", function () {
     // setInterval(nextSlide, 5000);
   });
 });
+// ============================================
+// Lightbox for Images
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".lightbox-close");
+
+  if (!lightbox) return;
+
+  // Select all images that should open in the lightbox
+  const images = document.querySelectorAll(
+    ".week-grid-item img, .project-image-item .image-placeholder img, .image-placeholder img, .inline-image img",
+  );
+
+  images.forEach((img) => {
+    img.addEventListener("click", function () {
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.addEventListener("click", closeLightbox);
+
+  // Close when clicking outside the image
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && lightbox.classList.contains("active")) {
+      closeLightbox();
+    }
+  });
+});
