@@ -1571,6 +1571,7 @@ p {
 
 .image-placeholder {
   width: 100%;
+  max-height: 90vh;
   height: auto;
   border-radius: 10px;
   overflow: hidden;

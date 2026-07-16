@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project Name - Portfolio</title>
+    <title>Breek het Beeld - Portfolio</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -208,16 +208,26 @@
         </div>
       </section>
 
-      <!-- More Images -->
       <section class="project-images-section">
         <div class="project-image-large">
           <div class="video-container">
-            <video autoplay loop muted playsinline>
-              <source src="Images/bhbvideo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              src="https://www.youtube.com/embed/htytK1ixxWY"
+              title="YouTube video player"
+              frameborder="0"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+              "
+              allowfullscreen
+            >
+            </iframe>
           </div>
-          <p class="image-caption">Final design showcase</p>
+          <p class="image-caption">Breek het Beeld demo</p>
         </div>
       </section>
 
@@ -272,7 +282,10 @@
         </div>
       </div>
     </footer>
-
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+      <img src="" alt="" id="lightbox-img" />
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
