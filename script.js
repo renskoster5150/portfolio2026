@@ -522,3 +522,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+// ============================================
+// Carousel Lightbox
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  if (!lightbox) return;
+
+  // Make carousel images clickable
+  const carouselImages = document.querySelectorAll(".carousel-slide img");
+
+  carouselImages.forEach((img) => {
+    img.style.cursor = "pointer";
+
+    img.addEventListener("click", function () {
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+});
