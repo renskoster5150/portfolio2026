@@ -546,3 +546,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+fetch("https://formspree.io/f/mvzlkbew", {
+  method: "POST",
+  body: formData,
+  headers: { Accept: "application/json" },
+});
