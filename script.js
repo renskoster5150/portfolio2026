@@ -32,40 +32,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================
-// Scroll Animations
+// Scroll Reveal Animations
 // ============================================
 
 function observeElements() {
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.12,
+    rootMargin: "0px 0px -80px 0px",
   };
 
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  // Elements to animate on scroll
   const animatedElements = document.querySelectorAll(
     ".work-card, .service-card, .timeline-item, .skill-category, " +
-      ".philosophy-item, .process-step, .pricing-card, .faq-item, .project-card",
+      ".philosophy-item, .process-step, .pricing-card, .faq-item, .project-card, " +
+      ".contact-info-card, .essay-card, .capability-item, .project-image-large, " +
+      ".project-image-item, .week-grid-item, .inline-image, .nav-link-btn",
   );
 
   animatedElements.forEach((el, index) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    el.style.transitionDelay = `${index * 0.1}s`;
+    el.classList.add("reveal");
+    el.style.transitionDelay = `${(index % 6) * 0.08}s`;
     observer.observe(el);
   });
 }
 
-// Initialize scroll animations when DOM is ready
 document.addEventListener("DOMContentLoaded", observeElements);
 
 // ============================================
@@ -79,21 +77,16 @@ document.addEventListener("DOMContentLoaded", function () {
   if (filterButtons.length > 0) {
     filterButtons.forEach((button) => {
       button.addEventListener("click", function () {
-        // Remove active class from all buttons
         filterButtons.forEach((btn) => btn.classList.remove("active"));
-
-        // Add active class to clicked button
         this.classList.add("active");
 
         const filterValue = this.getAttribute("data-filter");
 
-        // Filter projects
         projectCards.forEach((card) => {
           const category = card.getAttribute("data-category");
 
           if (filterValue === "all" || category === filterValue) {
             card.style.display = "block";
-            // Trigger animation
             setTimeout(() => {
               card.style.opacity = "1";
               card.style.transform = "translateY(0)";
@@ -122,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Get form data
       const formData = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
@@ -131,50 +123,42 @@ document.addEventListener("DOMContentLoaded", function () {
         message: document.getElementById("message").value,
       };
 
-      // Show success message (in a real implementation, this would send to a server)
       showFormMessage(
         "success",
         "Thank you for your message! I'll get back to you soon.",
       );
 
-      // Reset form
       contactForm.reset();
-
-      // Log form data (for demonstration)
       console.log("Form submitted:", formData);
     });
   }
 });
 
 function showFormMessage(type, message) {
-  // Create message element
   const messageDiv = document.createElement("div");
   messageDiv.className = `form-message form-message-${type}`;
   messageDiv.textContent = message;
 
-  // Style the message
   messageDiv.style.padding = "1.5rem";
   messageDiv.style.marginTop = "2rem";
-  messageDiv.style.borderRadius = "5px";
-  messageDiv.style.fontWeight = "600";
+  messageDiv.style.border = "2px solid";
+  messageDiv.style.fontWeight = "700";
   messageDiv.style.textAlign = "center";
   messageDiv.style.animation = "fadeIn 0.5s ease";
 
   if (type === "success") {
-    messageDiv.style.background = "rgba(46, 213, 115, 0.1)";
-    messageDiv.style.color = "#2ed573";
-    messageDiv.style.border = "2px solid #2ed573";
+    messageDiv.style.background = "rgba(47, 110, 59, 0.1)";
+    messageDiv.style.color = "#2f6e3b";
+    messageDiv.style.borderColor = "#2f6e3b";
   } else {
-    messageDiv.style.background = "rgba(255, 107, 53, 0.1)";
-    messageDiv.style.color = "#FF6B35";
-    messageDiv.style.border = "2px solid #FF6B35";
+    messageDiv.style.background = "rgba(255, 90, 31, 0.1)";
+    messageDiv.style.color = "#ff5a1f";
+    messageDiv.style.borderColor = "#ff5a1f";
   }
 
-  // Insert message after form
   const form = document.getElementById("contactForm");
   form.parentNode.insertBefore(messageDiv, form.nextSibling);
 
-  // Remove message after 5 seconds
   setTimeout(() => {
     messageDiv.style.opacity = "0";
     setTimeout(() => {
@@ -199,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const target = document.querySelector(href);
         if (target) {
-          const offsetTop = target.offsetTop - 100; // Account for fixed nav
+          const offsetTop = target.offsetTop - 100;
 
           window.scrollTo({
             top: offsetTop,
@@ -225,7 +209,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
 
         if (window.pageYOffset >= sectionTop - 200) {
           current = section.getAttribute("id");
@@ -243,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================
-// Navbar Background on Scroll
+// Nav compacts on scroll
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -251,83 +234,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (nav) {
     window.addEventListener("scroll", function () {
-      if (window.scrollY > 100) {
-        nav.style.background = "rgba(255, 255, 255, 0.98)";
-        nav.style.boxShadow = "0 2px 30px rgba(0,0,0,0.1)";
-      } else {
-        nav.style.background = "var(--color-white)";
-        nav.style.boxShadow = "0 2px 20px rgba(0,0,0,0.05)";
-      }
+      nav.classList.toggle("scrolled", window.scrollY > 80);
     });
   }
 });
 
 // ============================================
-// Parallax Effect for Hero Visual Elements
+// Magnetic Buttons
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const visualElements = document.querySelectorAll(".visual-element");
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
 
-  if (visualElements.length > 0) {
-    window.addEventListener("scroll", function () {
-      const scrolled = window.pageYOffset;
+  if (prefersReducedMotion || !isFinePointer) return;
 
-      visualElements.forEach((element, index) => {
-        const speed = 0.05 * (index + 1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-      });
-    });
-  }
-});
+  const magneticEls = document.querySelectorAll(".btn, .filter-btn");
 
-// ============================================
-// Form Input Animations
-// ============================================
-
-document.addEventListener("DOMContentLoaded", function () {
-  const inputs = document.querySelectorAll(
-    ".form-group input, .form-group select, .form-group textarea",
-  );
-
-  inputs.forEach((input) => {
-    // Add focus class on focus
-    input.addEventListener("focus", function () {
-      this.parentElement.classList.add("focused");
+  magneticEls.forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
     });
 
-    // Remove focus class on blur if empty
-    input.addEventListener("blur", function () {
-      if (this.value === "") {
-        this.parentElement.classList.remove("focused");
-      }
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "";
     });
-
-    // Add filled class if has value on load
-    if (input.value !== "") {
-      input.parentElement.classList.add("focused");
-    }
   });
 });
-
-// ============================================
-// Counter Animation (for statistics)
-// ============================================
-
-function animateCounter(element, target, duration) {
-  let start = 0;
-  const increment = target / (duration / 16); // 60 FPS
-
-  const timer = setInterval(() => {
-    start += increment;
-    if (start >= target) {
-      element.textContent = target;
-      clearInterval(timer);
-    } else {
-      element.textContent = Math.floor(start);
-    }
-  }, 16);
-}
 
 // ============================================
 // Image Lazy Loading (for performance)
@@ -367,52 +305,65 @@ window.addEventListener("load", function () {
 });
 
 // ============================================
-// Cursor Effect (Optional - Decorative)
+// Custom Cursor (blend-mode dot, desktop only)
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
   const isTouchDevice =
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
 
-  if (!isTouchDevice) {
-    const cursor = document.createElement("div");
-    cursor.className = "custom-cursor";
-    cursor.style.cssText = `
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--color-primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease, opacity 0.15s ease;
-            opacity: 0;
-        `;
-    document.body.appendChild(cursor);
+  if (isTouchDevice || !isFinePointer) return;
 
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX - 10 + "px";
-      cursor.style.top = e.clientY - 10 + "px";
-      cursor.style.opacity = "1";
-    });
+  document.body.classList.add("cursor-none");
 
-    document.addEventListener("mouseleave", () => {
-      cursor.style.opacity = "0";
-    });
+  const cursor = document.createElement("div");
+  cursor.className = "custom-cursor";
+  document.body.appendChild(cursor);
 
-    // Scale cursor on hover over interactive elements
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .work-card, .project-card",
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        cursor.style.transform = "scale(2)";
-      });
-      el.addEventListener("mouseleave", () => {
-        cursor.style.transform = "scale(1)";
-      });
-    });
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let visible = false;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!visible) {
+      cursorX = mouseX;
+      cursorY = mouseY;
+      visible = true;
+    }
+  });
+
+  function raf() {
+    cursorX += (mouseX - cursorX) * 0.2;
+    cursorY += (mouseY - cursorY) * 0.2;
+    cursor.style.left = cursorX + "px";
+    cursor.style.top = cursorY + "px";
+    requestAnimationFrame(raf);
   }
+  requestAnimationFrame(raf);
+
+  document.addEventListener("mouseleave", () => {
+    cursor.style.opacity = "0";
+  });
+  document.addEventListener("mouseenter", () => {
+    cursor.style.opacity = "1";
+  });
+
+  const interactiveElements = document.querySelectorAll(
+    "a, button, .work-card, .project-card, input, textarea, select",
+  );
+  interactiveElements.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("is-active");
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("is-active");
+    });
+  });
 });
 
 // ============================================
@@ -420,13 +371,14 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============================================
 
 console.log(
-  "%c🎨 Portfolio Website ",
-  "background: #FF6B35; color: white; font-size: 20px; padding: 10px;",
+  "%c✦ Portfolio Website ",
+  "background: #ff5a1f; color: white; font-size: 20px; padding: 10px;",
 );
 console.log(
   "%cDesigned with passion and attention to detail",
-  "font-size: 12px; color: #6B6B6B;",
+  "font-size: 12px; color: #5c5747;",
 );
+
 // ============================================
 // Inline Carousel
 // ============================================
@@ -442,11 +394,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentSlide = 0;
 
     function showSlide(index) {
-      // Remove active class from all slides and dots
       slides.forEach((slide) => slide.classList.remove("active"));
       dots.forEach((dot) => dot.classList.remove("active"));
 
-      // Add active class to current slide and dot
       slides[index].classList.add("active");
       dots[index].classList.add("active");
     }
@@ -461,7 +411,6 @@ document.addEventListener("DOMContentLoaded", function () {
       showSlide(currentSlide);
     }
 
-    // Event listeners
     if (nextBtn) nextBtn.addEventListener("click", nextSlide);
     if (prevBtn) prevBtn.addEventListener("click", prevSlide);
 
@@ -471,11 +420,9 @@ document.addEventListener("DOMContentLoaded", function () {
         showSlide(currentSlide);
       });
     });
-
-    // Optional: Auto-advance every 5 seconds
-    // setInterval(nextSlide, 5000);
   });
 });
+
 // ============================================
 // Lightbox for Images
 // ============================================
@@ -487,7 +434,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!lightbox) return;
 
-  // Select all images that should open in the lightbox
   const images = document.querySelectorAll(
     ".week-grid-item img, .project-image-item .image-placeholder img, .image-placeholder img, .inline-image img",
   );
@@ -508,20 +454,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closeBtn.addEventListener("click", closeLightbox);
 
-  // Close when clicking outside the image
   lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox) {
       closeLightbox();
     }
   });
 
-  // Close with Escape key
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && lightbox.classList.contains("active")) {
       closeLightbox();
     }
   });
 });
+
 // ============================================
 // Carousel Lightbox
 // ============================================
@@ -532,7 +477,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!lightbox) return;
 
-  // Make carousel images clickable
   const carouselImages = document.querySelectorAll(".carousel-slide img");
 
   carouselImages.forEach((img) => {
@@ -545,9 +489,4 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "hidden";
     });
   });
-});
-fetch("https://formspree.io/f/mvzlkbew", {
-  method: "POST",
-  body: formData,
-  headers: { Accept: "application/json" },
 });
