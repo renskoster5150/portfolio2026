@@ -842,7 +842,6 @@ p {
    Page headers (about / projects / contact)
    ============================================ */
 
-.about-page,
 .projects-page,
 .contact-page,
 .project-detail-page {
@@ -856,7 +855,6 @@ p {
   mix-blend-mode: difference;
 }
 
-.about-hero,
 .projects-container,
 .contact-container {
   max-width: 1500px;
@@ -903,9 +901,277 @@ p {
   margin-bottom: 1.4rem;
 }
 
+/* body clips x-overflow by default, which would break position: sticky */
+.about-page {
+  overflow-x: visible;
+}
+
+/* ---- About: pinned intro (see about.js) ---------------------------------
+   --a1 title lifts, --a2 photo + intro, --a3 second paragraph (0 -> 1)      */
+.about-scroll {
+  --a1: 0;
+  --a2: 0;
+  --a3: 0;
+  --title-size: min(15vw, 22vh);
+  position: relative;
+  height: 280vh;
+}
+.about-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 5.6rem 2rem 2rem;
+  overflow: hidden;
+}
+.about-stage .page-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 0.18em;
+  margin: 0;
+  font-size: var(--title-size);
+  line-height: 0.9;
+  /* starts in the middle of the screen, lifts to the top */
+  transform: translateY(
+    calc((1 - var(--a1)) * (50vh - 5.6rem - var(--title-size) * 0.5))
+  );
+}
+.about-stage .page-title .title-line.emphasis {
+  margin-top: 0;
+}
+.about-stage .intro-content {
+  flex: 1;
+  min-height: 0;
+  margin-top: 2.2vh;
+  align-items: center;
+  gap: 3.5rem;
+}
+.about-stage .profile-image {
+  opacity: var(--a2);
+  transform: translateY(calc((1 - var(--a2)) * 70px))
+    scale(calc(0.7 + 0.3 * var(--a2)));
+}
+.about-stage .placeholder-profile {
+  max-width: min(100%, 44vh);
+  margin: 0 auto;
+}
+.about-stage .intro-text h2 {
+  font-size: clamp(1.8rem, 5.2vh, 3.2rem);
+  margin-bottom: 1.1rem;
+  opacity: var(--a2);
+  transform: translateY(calc((1 - var(--a2)) * 50px));
+}
+.about-stage .intro-p1 {
+  opacity: var(--a2);
+  transform: translateY(calc((1 - var(--a2)) * 50px));
+}
+.about-stage .intro-p2 {
+  opacity: var(--a3);
+  transform: translateY(calc((1 - var(--a3)) * 50px));
+}
+.about-stage .intro-text p {
+  font-size: clamp(0.95rem, 2.1vh, 1.15rem);
+}
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2rem;
+  translate: -50% 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  opacity: calc(1 - var(--a1) * 3);
+}
+
+/* ---- About: the 3D head carousel --------------------------------------- */
+.face-carousel {
+  position: relative;
+  padding: 2rem 0 3rem;
+  overflow: hidden;
+}
+.carousel-canvas {
+  display: block;
+  width: 100%;
+  height: clamp(340px, 62vh, 640px);
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+.face-carousel.is-ready .carousel-canvas {
+  opacity: 1;
+}
+.face-carousel.no-3d {
+  display: none;
+}
+.carousel-label {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  margin: 1.2rem 0 0;
+}
+
+/* ---- About: skill stack (cards unfold as you scroll / hover) ----------- */
+.skills {
+  padding: 5rem 2rem;
+}
+.skills-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 4rem;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.skills-intro {
+  position: sticky;
+  top: 7rem;
+  align-self: start;
+}
+.skills-intro p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.skill-stack {
+  --open: 0;
+  --card-h: 184px;
+  --peek: 66px;
+  --gap: 14px;
+  position: relative;
+  perspective: 900px;
+  height: calc(var(--n) * var(--card-h) + (var(--n) - 1) * var(--gap));
+  max-width: 720px;
+  width: 100%;
+}
+.skill-card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--card-h);
+  top: calc(
+    var(--i) * (var(--peek) + (var(--card-h) + var(--gap) - var(--peek)) * var(--open))
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--card-2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.55);
+  text-shadow: none;
+  transform: translateZ(calc((1 - var(--open)) * var(--d) * -42px));
+  filter: blur(calc((1 - var(--open)) * var(--d) * 0.9px));
+  opacity: calc(1 - (1 - var(--open)) * var(--d) * 0.1);
+  will-change: transform, filter;
+}
+.skill-card:focus-visible {
+  outline-offset: 4px;
+}
+.skill-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.skill-head h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+.skill-num {
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--c);
+  color: #000;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.skill-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-shadow: none;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+.skill-tags span {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--c);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--c);
+  text-transform: lowercase;
+}
+
+@media (max-width: 860px), (max-height: 619px) {
+  .about-scroll {
+    --a1: 1;
+    --a2: 1;
+    --a3: 1;
+    height: auto;
+  }
+  .about-stage {
+    position: static;
+    height: auto;
+    padding: 6rem 1.2rem 2rem;
+    overflow: visible;
+  }
+  .about-stage .page-title {
+    --title-size: min(22vw, 20vh);
+    justify-content: flex-start;
+  }
+  .about-stage .intro-content {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    margin-top: 2rem;
+  }
+  .about-stage .placeholder-profile {
+    max-width: 320px;
+    margin: 0;
+  }
+  .scroll-hint {
+    display: none;
+  }
+  .skills {
+    padding: 4rem 1.2rem;
+  }
+  .skills-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
+  }
+  .skills-intro {
+    position: static;
+  }
+}
+@media (max-width: 600px) {
+  .skill-stack {
+    --card-h: 214px;
+    --peek: 62px;
+  }
+  .skill-card {
+    padding: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-card {
+    will-change: auto;
+  }
+}
+
 .experience,
-.skills,
-.philosophy,
 .cta-section {
   padding: 5rem 2rem;
 }
@@ -962,96 +1228,6 @@ p {
 .company {
   color: var(--muted);
   margin-bottom: 0.6rem;
-}
-
-.skills-container,
-.philosophy-content {
-  max-width: 1500px;
-  margin: 0 auto;
-}
-.skills-intro {
-  margin-bottom: 3rem;
-}
-.skills-intro p {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-.skills-grid,
-.philosophy-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.8rem;
-}
-.skill-category,
-.philosophy-item,
-.faq-item,
-.contact-info-card {
-  background: var(--card);
-  padding: 1.8rem;
-  transition: transform 0.4s var(--pop);
-}
-.skill-category:hover,
-.philosophy-item:hover,
-.faq-item:hover {
-  transform: rotate(-1deg) translateY(-4px);
-}
-.skill-category h3 {
-  font-size: 1.7rem;
-  margin-bottom: 1.2rem;
-}
-.skill-category ul {
-  display: grid;
-  gap: 0.55rem;
-}
-.skill-category li {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--body);
-}
-.skill-category li::after {
-  content: "→";
-  color: var(--yellow);
-}
-
-.philosophy-content h2 {
-  margin-bottom: 2.5rem;
-}
-.philosophy-icon {
-  display: grid;
-  place-items: center;
-  width: 3.6rem;
-  height: 3.6rem;
-  border-radius: 50%;
-  background: var(--yellow);
-  font-size: 1.5rem;
-  margin-bottom: 1.2rem;
-  text-shadow: none;
-  transition: transform 0.4s var(--pop);
-}
-.philosophy-item:nth-child(2) .philosophy-icon {
-  background: var(--pink);
-}
-.philosophy-item:nth-child(3) .philosophy-icon {
-  background: var(--lilac);
-}
-.philosophy-item:nth-child(4) .philosophy-icon {
-  background: var(--mint);
-}
-.philosophy-item:hover .philosophy-icon {
-  transform: rotate(-14deg) scale(1.12);
-}
-.philosophy-item h3 {
-  font-size: 1.6rem;
-}
-.philosophy-item p {
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin: 0;
 }
 
 .cta-section {
@@ -1513,8 +1689,7 @@ p {
 }
 .content-sidebar h2::before,
 .section-title::before,
-.capabilities-text h2::before,
-.philosophy-content h2::before {
+.capabilities-text h2::before {
   content: "";
   display: inline-block;
   width: 0.38em;
@@ -1926,12 +2101,9 @@ p {
   }
 
   .capabilities,
-  .experience,
-  .skills,
-  .philosophy {
+  .experience {
     padding: 4rem 1.2rem;
   }
-  .about-hero,
   .projects-container,
   .contact-container,
   .project-detail-container {

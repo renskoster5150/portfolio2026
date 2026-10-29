@@ -55,8 +55,8 @@ function observeElements() {
   }, observerOptions);
 
   const animatedElements = document.querySelectorAll(
-    ".work-card, .service-card, .timeline-item, .skill-category, " +
-      ".philosophy-item, .process-step, .pricing-card, .faq-item, .project-card, " +
+    ".work-card, .service-card, .timeline-item, " +
+      ".process-step, .pricing-card, .faq-item, .project-card, " +
       ".contact-info-card, .essay-card, .capability-item, .project-image-large, " +
       ".project-image-item, .week-grid-item, .inline-image, .nav-link-btn",
   );

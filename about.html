@@ -30,8 +30,8 @@
       </div>
     </nav>
 
-    <main class="about-hero">
-      <div class="about-intro">
+    <main class="about-scroll" id="about-scroll">
+      <div class="about-stage">
         <h1 class="page-title">
           <span class="title-line">About</span>
           <span class="title-line emphasis">Me</span>
@@ -44,7 +44,7 @@
           </div>
           <div class="intro-text">
             <h2>UX & Visual Design Student</h2>
-            <p>
+            <p class="intro-p1">
               My name is Rens Koster, and I am a 22-year-old Communication and
               Multimedia Design student with a strong focus on visual and UX
               design. I enjoy creating digital experiences that are clear,
@@ -53,7 +53,7 @@
               personas, and testing designs to make sure my work actually works
               in real life, not just on screen.
             </p>
-            <p>
+            <p class="intro-p2">
               Besides design, I am interested in music, movies, gaming, and
               sports. These interests influence my creativity and help me look
               at problems from different angles. And yes, I am always open to
@@ -61,8 +61,14 @@
             </p>
           </div>
         </div>
+        <div class="scroll-hint" aria-hidden="true">Scroll</div>
       </div>
     </main>
+
+    <section class="face-carousel" aria-label="3D scans of Rens, on repeat">
+      <canvas class="carousel-canvas" aria-hidden="true"></canvas>
+      <p class="carousel-label">3D scan, on repeat</p>
+    </section>
 
     <section class="experience">
       <div class="section-header">
@@ -118,89 +124,53 @@
     </section>
 
     <section class="skills">
-      <div class="skills-container">
+      <div class="skills-wrap">
         <div class="skills-intro">
           <h2 class="section-title">Skills & Tools</h2>
           <p>A diverse toolkit for bringing creative visions to life</p>
         </div>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>Design Software</h3>
-            <ul>
-              <li>Photoshop</li>
-              <li>Illustrator</li>
-              <li>Adobe XD</li>
-              <li>Figma</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Specializations</h3>
-            <ul>
-              <li>Brand Identity Design</li>
-              <li>UI/UX Design</li>
-              <li>Typography & Layout</li>
-              <li>Print Design</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Technical Skills</h3>
-            <ul>
-              <li>HTML & CSS</li>
-              <li>Responsive Design</li>
-              <li>Design Systems</li>
-              <li>Prototyping</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Soft Skills</h3>
-            <ul>
-              <li>Creative Problem Solving</li>
-              <li>Client Communication</li>
-              <li>Project Management</li>
-              <li>Team Collaboration</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="philosophy">
-      <div class="philosophy-content">
-        <h2>Design Philosophy</h2>
-        <div class="philosophy-grid">
-          <div class="philosophy-item">
-            <span class="philosophy-icon">💡</span>
-            <h3>Purpose-Driven</h3>
-            <p>
-              Every design decision serves a strategic purpose. Beauty and
-              functionality aren't mutually exclusive: they enhance each other.
-            </p>
-          </div>
-          <div class="philosophy-item">
-            <span class="philosophy-icon">🎨</span>
-            <h3>Detail-Oriented</h3>
-            <p>
-              Great design lives in the details. From spacing to color choices,
-              every element is carefully considered and intentional.
-            </p>
-          </div>
-          <div class="philosophy-item">
-            <span class="philosophy-icon">🚀</span>
-            <h3>Innovation-Focused</h3>
-            <p>
-              I constantly explore new techniques and trends while maintaining
-              timeless design principles that ensure longevity.
-            </p>
-          </div>
-          <div class="philosophy-item">
-            <span class="philosophy-icon">🤝</span>
-            <h3>Collaborative</h3>
-            <p>
-              The best work emerges from collaboration. I believe in open
-              communication and incorporating feedback throughout the process.
-            </p>
-          </div>
-        </div>
+        <ul class="skill-stack" style="--n: 5">
+          <li class="skill-card" style="--i: 0; --d: 4; --c: var(--yellow)" tabindex="0">
+            <div class="skill-head">
+              <span class="skill-num">01</span>
+              <h3>UX/UI Design</h3>
+            </div>
+            <p>Research, personas, wireframes and testing, so interfaces work in real life, not just on screen.</p>
+            <div class="skill-tags"><span>Research</span><span>Personas</span><span>Prototyping</span><span>Testing</span></div>
+          </li>
+          <li class="skill-card" style="--i: 1; --d: 3; --c: var(--pink)" tabindex="0">
+            <div class="skill-head">
+              <span class="skill-num">02</span>
+              <h3>Branding</h3>
+            </div>
+            <p>Visual identities that hold together, from the first logo sketch to the final guidelines.</p>
+            <div class="skill-tags"><span>Logo design</span><span>Visual systems</span><span>Guidelines</span></div>
+          </li>
+          <li class="skill-card" style="--i: 2; --d: 2; --c: var(--lilac)" tabindex="0">
+            <div class="skill-head">
+              <span class="skill-num">03</span>
+              <h3>Design Software</h3>
+            </div>
+            <p>The tools I work in, from first sketch to finished file.</p>
+            <div class="skill-tags"><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>Adobe XD</span></div>
+          </li>
+          <li class="skill-card" style="--i: 3; --d: 1; --c: var(--coral)" tabindex="0">
+            <div class="skill-head">
+              <span class="skill-num">04</span>
+              <h3>AI Specialisation</h3>
+            </div>
+            <p>Using AI as a creative partner for faster concepts, images and workflows.</p>
+            <div class="skill-tags"><span>Concepting</span><span>Image generation</span><span>Workflow</span></div>
+          </li>
+          <li class="skill-card" style="--i: 4; --d: 0; --c: var(--mint)" tabindex="0">
+            <div class="skill-head">
+              <span class="skill-num">05</span>
+              <h3>Audio Visual</h3>
+            </div>
+            <p>Storytelling, video and sound for digital and physical experiences.</p>
+            <div class="skill-tags"><span>Video</span><span>Sound</span><span>Storytelling</span></div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -260,5 +230,15 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="about.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="about-3d.js"></script>
   </body>
 </html>
