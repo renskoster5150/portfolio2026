@@ -98,7 +98,9 @@ select:focus-visible {
   z-index: 9998;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
-  transition: width 0.25s ease, height 0.25s ease;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease;
 }
 
 .custom-cursor.is-active {
@@ -1577,7 +1579,7 @@ p {
 .faq-section {
   padding: 6rem 2rem;
   background: var(--paper-alt);
-  margin: 0 -2rem;
+  margin: 2em -2rem;
   border-top: 2px solid var(--ink);
 }
 

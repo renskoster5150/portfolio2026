@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Raw video / audio / archives (too large for GitHub; videos are embedded from YouTube)
+*.MOV
+*.mov
+*.mp4
+*.wav
+*.asd
+*.zip
+
+# Large source PDFs
+ArtisticVision_RensKoster.pdf
+Artisticvisionklein.pdf
