@@ -44,8 +44,12 @@ function observeElements() {
   const observer = new IntersectionObserver(function (entries) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+        const el = entry.target;
+        el.classList.add("is-visible");
+        observer.unobserve(el);
+        setTimeout(() => {
+          el.style.transitionDelay = "";
+        }, 1400);
       }
     });
   }, observerOptions);
@@ -86,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
           const category = card.getAttribute("data-category");
 
           if (filterValue === "all" || category === filterValue) {
-            card.style.display = "block";
+            card.style.display = "";
             setTimeout(() => {
-              card.style.opacity = "1";
-              card.style.transform = "translateY(0)";
+              card.style.opacity = "";
+              card.style.transform = "";
             }, 10);
           } else {
             card.style.opacity = "0";
@@ -240,31 +244,70 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================
-// Magnetic Buttons
+// Floating background shapes (parallax at different speeds)
 // ============================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-  const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const small = window.innerWidth < 768;
 
-  if (prefersReducedMotion || !isFinePointer) return;
+  const defs = [
+    { type: "block", c: "#ffd23f", s: 200, x: 0.82, y: 0.15, v: 0.55, r: 0.06, sway: 26 },
+    { type: "circle", c: "#ff8fc0", s: 150, x: 0.08, y: 0.55, v: 0.28, r: 0.04, sway: 20 },
+    { type: "pill", c: "#a99bff", s: 110, x: 0.6, y: 0.85, v: 0.75, r: -0.05, sway: 34 },
+    { type: "cross", c: "#6fe3a5", s: 130, x: 0.2, y: 0.1, v: 0.42, r: 0.12, sway: 18 },
+    { type: "half", c: "#ff6b3d", s: 170, x: 0.9, y: 0.7, v: 0.35, r: -0.07, sway: 24 },
+    { type: "tri", c: "#ffd23f", s: 100, x: 0.42, y: 0.4, v: 0.6, r: 0.09, sway: 30 },
+    { type: "circle", c: "#a99bff", s: 90, x: 0.75, y: 0.4, v: 0.2, r: 0.03, sway: 16 },
+  ].slice(0, small ? 4 : 7);
 
-  const magneticEls = document.querySelectorAll(".btn, .filter-btn");
+  const layer = document.createElement("div");
+  layer.className = "bg-shapes";
+  layer.setAttribute("aria-hidden", "true");
 
-  magneticEls.forEach((el) => {
-    el.addEventListener("mousemove", (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      el.style.transform = `translate(${x * 0.25}px, ${y * 0.35}px)`;
-    });
-
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "";
-    });
+  const shapes = defs.map((d) => {
+    const el = document.createElement("div");
+    el.className = `shape shape--${d.type}`;
+    d.size = d.s * (small ? 0.6 : 1);
+    el.style.setProperty("--s", `${d.size}px`);
+    el.style.setProperty("--c", d.c);
+    layer.appendChild(el);
+    return { el, d };
   });
+  document.body.insertBefore(layer, document.body.firstChild);
+
+  let target = window.scrollY;
+  let current = target;
+
+  function place() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    shapes.forEach(({ el, d }, i) => {
+      const pad = d.size * 2;
+      const span = vh + pad * 2;
+      const y = ((((d.y * span - current * d.v) % span) + span) % span) - pad;
+      const x = d.x * vw + Math.sin(current / 320 + i * 1.7) * d.sway;
+      el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${current * d.r}deg)`;
+    });
+  }
+
+  place();
+  if (reduce) return;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      target = window.scrollY;
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", place);
+
+  (function tick() {
+    current += (target - current) * 0.09;
+    if (Math.abs(target - current) > 0.05) place();
+    requestAnimationFrame(tick);
+  })();
 });
 
 // ============================================
