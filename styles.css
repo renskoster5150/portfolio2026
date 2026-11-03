@@ -970,13 +970,6 @@ p {
 .face-carousel.no-3d {
   display: none;
 }
-.carousel-label {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  color: var(--muted);
-  margin: 1.2rem 0 0;
-}
 
 /* ---- About: skill stack (cards unfold as you scroll / hover) ----------- */
 .skills {
@@ -1206,6 +1199,7 @@ p {
 .cta-content h2,
 .cta-content p {
   color: #000;
+  text-shadow: none;
   margin-left: auto;
   margin-right: auto;
 }

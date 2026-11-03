@@ -1,11 +1,9 @@
 import * as THREE from "three";
 import { loadRisoHead } from "./riso-head.js";
-import { teardropGeometry, risoShapeMaterial, SHAPE_LOOKS } from "./riso-shapes.js";
 
 // ---- Config ---------------------------------------------------------------
 const MODEL_URL = "models/head-riso.glb";
 const TILTS = [-13, 9, -5, 15, -9, 6].map((d) => THREE.MathUtils.degToRad(d));
-const LOOKS = [0, 1, 3]; // pink, blue and yellow teardrops behind the heads
 const DRIFT = 0.16; // spacings per second
 const SPACING = 1.55; // head widths between centres
 // ---------------------------------------------------------------------------
@@ -48,26 +46,15 @@ function init() {
   let time = 0;
   let raf = 0;
 
-  const dropGeo = teardropGeometry();
-  const dropMats = LOOKS.map((i) => risoShapeMaterial({ ...SHAPE_LOOKS[i], pr }));
-
   function makeSlot(i) {
     const slot = new THREE.Group();
-
-    const drop = new THREE.Group(); // teardrop behind the head, turning slowly
-    const dropMesh = new THREE.Mesh(dropGeo, dropMats[i % dropMats.length]);
-    dropMesh.scale.setScalar(1.45);
-    drop.add(dropMesh);
-    drop.position.set(0.1 * (i % 2 ? 1 : -1), -0.04, -0.75);
-    drop.rotation.z = (i * 1.9) % 6.28;
-    slot.add(drop);
 
     const pivot = new THREE.Group(); // yaw + nod
     pivot.add(template.clone(true));
     slot.add(pivot);
     scene.add(slot);
     const dir = i % 2 ? 1 : -1;
-    return { slot, pivot, drop, i, dir, baseTilt: TILTS[i % TILTS.length] };
+    return { slot, pivot, i, dir, baseTilt: TILTS[i % TILTS.length] };
   }
 
   function clearSlots() {
@@ -115,7 +102,6 @@ function init() {
       // the new scan has a back, so the heads simply keep turning
       s.pivot.rotation.y = reduceMotion ? s.i * 0.9 : s.dir * t * 0.5 + s.i * 1.3;
       s.pivot.rotation.x = reduceMotion ? 0 : Math.sin(t * 1.1 + s.i * 0.9) * 0.06;
-      s.drop.rotation.y = reduceMotion ? 0.4 * s.i : -s.dir * t * 0.35 + s.i;
     });
   }
 
