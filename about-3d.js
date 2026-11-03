@@ -6,6 +6,7 @@ const MODEL_URL = "models/head-riso.glb";
 const TILTS = [-13, 9, -5, 15, -9, 6].map((d) => THREE.MathUtils.degToRad(d));
 const DRIFT = 0.16; // spacings per second
 const SPACING = 1.55; // head widths between centres
+const LOWER = 0; // heads sit a little low, the text card overlaps the top
 // ---------------------------------------------------------------------------
 
 const section = document.querySelector(".face-carousel");
@@ -73,7 +74,7 @@ function init() {
     visW = VIS_H * (w / h);
 
     const ratio = box.w / box.h;
-    const headPx = Math.min(0.58 * h, (0.6 * w) / ratio);
+    const headPx = Math.min(0.56 * h, (0.6 * w) / ratio);
     headH = (headPx / h) * VIS_H;
     spacing = headH * ratio * SPACING;
 
@@ -96,7 +97,7 @@ function init() {
       if (x < 0) x += total;
       x -= total / 2;
       const bob = reduceMotion ? 0 : Math.sin(t * 1.4 + s.i * 1.3) * 0.07 * headH;
-      s.slot.position.set(x, bob, 0);
+      s.slot.position.set(x, bob - LOWER * VIS_H, 0);
       s.slot.rotation.z =
         s.baseTilt + (reduceMotion ? 0 : Math.sin(t * 0.9 + s.i * 2.1) * 0.07);
       // the new scan has a back, so the heads simply keep turning

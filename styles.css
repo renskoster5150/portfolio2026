@@ -348,7 +348,7 @@ p {
   color: #000;
   padding: 1rem 0;
   width: 104%;
-  margin: 2.5rem 0 2.5rem -2%;
+  margin: 0 0 2.5rem -2%;
   transform: rotate(-1.4deg);
   text-shadow: none;
 }
@@ -603,9 +603,15 @@ p {
 .after-hero {
   position: relative;
   z-index: 5;
+}
+/* the black starts halfway down the yellow band, so the band itself is the
+   top edge sliding over the hero (no black strip above it) */
+.after-hero::before {
+  content: "";
+  position: absolute;
+  inset: 2.8rem 0 0 0;
   background: var(--bg);
-  padding-top: 2rem;
-  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.8);
+  z-index: -1;
 }
 
 /* portrait screens: the two name words go above / below the head */
@@ -837,34 +843,7 @@ p {
 
 /* About */
 .intro-content {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 4rem;
   margin-top: 3rem;
-  align-items: start;
-}
-.placeholder-profile {
-  border-radius: 6px;
-  overflow: hidden;
-  transform: rotate(-2.5deg);
-  transition: transform 0.5s var(--pop);
-}
-.placeholder-profile:hover {
-  transform: rotate(1.5deg) scale(1.02);
-}
-.placeholder-profile img,
-.placeholder-profile .riso-photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-.placeholder-profile img[hidden] {
-  display: none;
-}
-.intro-text h2 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  margin-bottom: 1.4rem;
 }
 
 /* body clips x-overflow by default, which would break position: sticky */
@@ -873,11 +852,12 @@ p {
 }
 
 /* ---- About: pinned intro (see about.js) ---------------------------------
-   --a1 title lifts, --a2 photo + glass card (0 -> 1); words are lit by JS  */
+   --a1 title lifts, --a2 glass card + head carousel (0 -> 1); words are lit by JS.
+   The text card and the 3D heads share the pinned screen.                    */
 .about-scroll {
   --a1: 0;
   --a2: 0;
-  --title-size: min(15vw, 22vh);
+  --title-size: min(10.5vw, 14vh);
   position: relative;
   height: 330vh;
 }
@@ -887,9 +867,7 @@ p {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 5.6rem 2rem 2rem;
+  padding: 5.4rem 2rem 0;
   overflow: hidden;
 }
 .about-stage .page-title {
@@ -901,32 +879,32 @@ p {
   margin: 0;
   font-size: var(--title-size);
   line-height: 0.9;
+  flex: none;
   /* starts in the middle of the screen, lifts to the top */
   transform: translateY(
-    calc((1 - var(--a1)) * (50vh - 5.6rem - var(--title-size) * 0.5))
+    calc((1 - var(--a1)) * (50vh - 5.4rem - var(--title-size) * 0.5))
   );
 }
 .about-stage .page-title .title-line.emphasis {
   margin-top: 0;
 }
 .about-stage .intro-content {
-  flex: 1;
-  min-height: 0;
-  margin-top: 2.2vh;
-  align-items: center;
-  gap: 3.5rem;
-}
-.about-stage .profile-image {
-  opacity: var(--a2);
-  transform: translateY(calc((1 - var(--a2)) * 70px))
-    scale(calc(0.7 + 0.3 * var(--a2)));
-}
-.about-stage .placeholder-profile {
-  max-width: min(100%, 44vh);
-  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  flex: none;
+  width: 100%;
+  max-width: 1120px;
+  margin: 2vh auto 0;
 }
 .about-stage .intro-text {
-  padding: clamp(1.4rem, 3.4vh, 2.4rem);
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-areas:
+    "title p1"
+    "title p2";
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+  padding: clamp(1.1rem, 3vh, 2.2rem);
   border-radius: 22px;
   background: color-mix(in srgb, var(--pink) 14%, rgba(255, 255, 255, 0.05));
   -webkit-backdrop-filter: blur(22px) saturate(1.5);
@@ -937,13 +915,22 @@ p {
   transform: translateY(calc((1 - var(--a2)) * 60px));
 }
 .about-stage .intro-text h2 {
-  font-size: clamp(1.8rem, 5.2vh, 3.2rem);
-  margin-bottom: 1.1rem;
+  grid-area: title;
+  font-size: clamp(1.7rem, 4.6vh, 3rem);
+  margin: 0;
+}
+.about-stage .intro-p1 {
+  grid-area: p1;
+}
+.about-stage .intro-p2 {
+  grid-area: p2;
 }
 .about-stage .intro-text p {
-  font-size: clamp(0.95rem, 2.1vh, 1.15rem);
+  font-size: clamp(0.88rem, 1.9vh, 1.1rem);
+  line-height: 1.5;
   color: var(--text);
   text-shadow: none;
+  margin: 0 0 0.8em;
 }
 .about-stage .intro-text p:last-child {
   margin-bottom: 0;
@@ -954,24 +941,33 @@ p {
 .scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: 1.2rem;
+  bottom: 1rem;
   translate: -50% 0;
+  z-index: 3;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--muted);
   opacity: calc(1 - var(--a1) * 3);
 }
 
-/* ---- About: the 3D head carousel --------------------------------------- */
+/* ---- About: the 3D head carousel (fills the rest of the pinned screen) --- */
 .face-carousel {
   position: relative;
-  padding: 2rem 0 3rem;
-  overflow: hidden;
+  z-index: 1;
+}
+.about-stage .face-carousel {
+  flex: 1;
+  min-height: 0;
+  margin: -3vh -2rem 0;
+  opacity: var(--a2);
+  transform: translateY(calc((1 - var(--a2)) * 80px));
 }
 .carousel-canvas {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: clamp(340px, 62vh, 640px);
+  height: 100%;
   opacity: 0;
   transition: opacity 0.8s var(--ease);
 }
@@ -1083,7 +1079,7 @@ p {
   text-transform: lowercase;
 }
 
-@media (max-width: 960px), (max-height: 699px) {
+@media (max-width: 960px), (max-height: 639px) {
   .about-scroll {
     --a1: 1;
     --a2: 1;
@@ -1092,7 +1088,7 @@ p {
   .about-stage {
     position: static;
     height: auto;
-    padding: 6rem 1.2rem 2rem;
+    padding: 6rem 1.2rem 0;
     overflow: visible;
   }
   .about-stage .page-title {
@@ -1100,13 +1096,23 @@ p {
     justify-content: flex-start;
   }
   .about-stage .intro-content {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
     margin-top: 2rem;
   }
-  .about-stage .placeholder-profile {
-    max-width: 320px;
-    margin: 0;
+  .about-stage .intro-text {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "p1"
+      "p2";
+    row-gap: 1rem;
+  }
+  .about-stage .intro-text p {
+    font-size: 1rem;
+  }
+  .about-stage .face-carousel {
+    flex: none;
+    height: clamp(300px, 52vh, 460px);
+    margin: 1rem -1.2rem 0;
   }
   .scroll-hint {
     display: none;
