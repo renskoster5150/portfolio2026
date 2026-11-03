@@ -62,6 +62,7 @@ function observeElements() {
   );
 
   animatedElements.forEach((el, index) => {
+    if (el.hasAttribute("data-fx")) return; // moved by scroll-fx.js instead
     el.classList.add("reveal");
     el.style.transitionDelay = `${(index % 6) * 0.08}s`;
     observer.observe(el);

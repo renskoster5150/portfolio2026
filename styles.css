@@ -2447,3 +2447,32 @@ p {
     transform: none;
   }
 }
+
+/* ============================================
+   Scroll-linked motion (see scroll-fx.js)
+   ============================================ */
+[data-fx] {
+  will-change: translate, rotate, scale, opacity;
+  /* the script drives opacity and the movement; keep hover transitions only */
+  transition:
+    transform 0.45s var(--pop),
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+[data-fx="par"] {
+  transition: transform 0.6s var(--ease);
+}
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cat);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 1200;
+  pointer-events: none;
+}
