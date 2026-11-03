@@ -1,0 +1,13 @@
+<svg width="250" height="217" viewBox="0 0 250 217" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon/Main/Marketing" clip-path="url(#clip0_1_2)">
+<path id="Vector" d="M250 0L0 137.4L83.4 216.7L228.4 144.4L250 0Z" fill="#FFCE00"/>
+<path id="Vector_2" d="M133.4 120.2V197.7H123.5V123.4L90.6 93.5999L61 82L64.6 72.8L88.2 82.0999V56.4H98.1V87.0999L123.5 110.1V73.9L111.7 19.7999L121.3 17.7L130.7 60.2999L145.4 36.5999L153.8 41.7999L133.4 74.8V106.7" fill="white"/>
+<path id="Vector_3" d="M133.4 120.2V197.7H123.5V123.4L90.6 93.5999L61 82L64.6 72.8L88.2 82.0999V56.4H98.1V87.0999L123.5 110.1V73.9L111.7 19.7999L121.3 17.7L130.7 60.2999L145.4 36.5999L153.8 41.7999L133.4 74.8V106.7" stroke="#111111" stroke-width="4" stroke-miterlimit="10"/>
+<path id="Vector_4" d="M160.1 119.3L147.2 106.9L133.4 119.7V106.2L147.3 93.3L159.4 105L170.5 91.9L163.9 86.4L189.3 77.3L184.8 103.8L178.1 98.3L160.1 119.3Z" fill="#2EBFA5" stroke="#111111" stroke-width="4" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_1_2">
+<rect width="250" height="217" fill="white"/>
+</clipPath>
+</defs>
+</svg>
