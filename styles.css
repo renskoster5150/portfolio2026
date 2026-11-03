@@ -844,20 +844,23 @@ p {
   align-items: start;
 }
 .placeholder-profile {
-  background: var(--pink);
-  padding: 14px;
   border-radius: 6px;
+  overflow: hidden;
   transform: rotate(-2.5deg);
   transition: transform 0.5s var(--pop);
 }
 .placeholder-profile:hover {
   transform: rotate(1.5deg) scale(1.02);
 }
-.placeholder-profile img {
+.placeholder-profile img,
+.placeholder-profile .riso-photo {
+  display: block;
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 3px;
+}
+.placeholder-profile img[hidden] {
+  display: none;
 }
 .intro-text h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -870,14 +873,13 @@ p {
 }
 
 /* ---- About: pinned intro (see about.js) ---------------------------------
-   --a1 title lifts, --a2 photo + intro, --a3 second paragraph (0 -> 1)      */
+   --a1 title lifts, --a2 photo + glass card (0 -> 1); words are lit by JS  */
 .about-scroll {
   --a1: 0;
   --a2: 0;
-  --a3: 0;
   --title-size: min(15vw, 22vh);
   position: relative;
-  height: 280vh;
+  height: 330vh;
 }
 .about-stage {
   position: sticky;
@@ -923,22 +925,31 @@ p {
   max-width: min(100%, 44vh);
   margin: 0 auto;
 }
+.about-stage .intro-text {
+  padding: clamp(1.4rem, 3.4vh, 2.4rem);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--pink) 14%, rgba(255, 255, 255, 0.05));
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  text-shadow: none;
+  opacity: var(--a2);
+  transform: translateY(calc((1 - var(--a2)) * 60px));
+}
 .about-stage .intro-text h2 {
   font-size: clamp(1.8rem, 5.2vh, 3.2rem);
   margin-bottom: 1.1rem;
-  opacity: var(--a2);
-  transform: translateY(calc((1 - var(--a2)) * 50px));
-}
-.about-stage .intro-p1 {
-  opacity: var(--a2);
-  transform: translateY(calc((1 - var(--a2)) * 50px));
-}
-.about-stage .intro-p2 {
-  opacity: var(--a3);
-  transform: translateY(calc((1 - var(--a3)) * 50px));
 }
 .about-stage .intro-text p {
   font-size: clamp(0.95rem, 2.1vh, 1.15rem);
+  color: var(--text);
+  text-shadow: none;
+}
+.about-stage .intro-text p:last-child {
+  margin-bottom: 0;
+}
+.intro-text .w {
+  transition: opacity 0.2s linear;
 }
 .scroll-hint {
   position: absolute;
@@ -1072,11 +1083,10 @@ p {
   text-transform: lowercase;
 }
 
-@media (max-width: 860px), (max-height: 619px) {
+@media (max-width: 960px), (max-height: 699px) {
   .about-scroll {
     --a1: 1;
     --a2: 1;
-    --a3: 1;
     height: auto;
   }
   .about-stage {
