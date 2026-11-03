@@ -178,59 +178,21 @@ p {
 }
 
 /* ============================================
-   Floating background shapes (injected by script.js)
+   Riso background shapes (3D teardrops, see riso-bg.js)
    ============================================ */
 
-.bg-shapes {
+.shapes-canvas {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
-
-.shape {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: var(--s);
-  height: var(--s);
-  background: var(--c);
-  will-change: transform;
-}
-.shape--block {
-  border-radius: 18%;
-}
-.shape--circle {
-  border-radius: 50%;
-}
-.shape--pill {
-  width: calc(var(--s) * 1.9);
-  height: calc(var(--s) * 0.8);
-  border-radius: 999px;
-}
-.shape--half {
-  height: calc(var(--s) * 0.5);
-  border-radius: 999px 999px 0 0;
-}
-.shape--cross {
-  clip-path: polygon(
-    35% 0,
-    65% 0,
-    65% 35%,
-    100% 35%,
-    100% 65%,
-    65% 65%,
-    65% 100%,
-    35% 100%,
-    35% 65%,
-    0 65%,
-    0 35%,
-    35% 35%
-  );
-}
-.shape--tri {
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+.shapes-canvas.is-ready {
+  opacity: 1;
 }
 
 /* Cursor */
@@ -632,8 +594,9 @@ p {
 .home-page .main-nav {
   animation: fade-in 1s ease 2s backwards;
 }
-.home-page .bg-shapes {
+.home-page .shapes-canvas.is-ready {
   opacity: var(--shapes-o, 0);
+  transition: none;
 }
 
 /* the rest of the page slides up over the pinned hero */

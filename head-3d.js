@@ -1,14 +1,14 @@
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { loadRisoHead } from "./riso-head.js";
 
 // ---- Config ---------------------------------------------------------------
-const MODEL_URL = "models/head.glb";
-// The scan has no back of the head, so the turn is kept small. The mesh was
-// checked from -35deg to +35deg; the animation only uses +/-20deg.
-const YAW_START = THREE.MathUtils.degToRad(20); // looking slightly right
-const YAW_END = THREE.MathUtils.degToRad(-20); // looking left
+const MODEL_URL = "models/head-riso.glb";
+// The new scan has a back, so the head makes one complete turn while you scroll:
+// it slides in looking slightly right, spins all the way round, and lands
+// looking slightly left.
+const YAW_START = THREE.MathUtils.degToRad(20);
+const YAW_END = THREE.MathUtils.degToRad(-20 - 360);
 const SCROLL_SCREENS = 1.8; // timeline length, in viewport heights
-const FACE_FORWARD_Z = 0.12; // pivot sits this far behind the face shell
 // ---------------------------------------------------------------------------
 
 const hero = document.getElementById("hero");
@@ -40,34 +40,27 @@ function init() {
   camera.position.set(0, 0, 6);
   const VIS_H = 2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(15));
 
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x666666, 1.6));
-  const key = new THREE.DirectionalLight(0xffffff, 2.0);
-  key.position.set(2, 3, 4);
-  scene.add(key);
-
   const pivot = new THREE.Group(); // yaw + slide happen here
   const holder = new THREE.Group(); // uniform scale
   pivot.add(holder);
   scene.add(pivot);
   pivot.visible = false;
 
-  const box = { w: 0.745, h: 0.959 }; // scan bounds (width / height)
+  const box = { w: 0.81, h: 1.0 }; // upright scan bounds, replaced once loaded
   let headLoaded = false;
   let worldHeadW = 0; // head width in world units after scaling
   let visW = 1;
+  const pr = { value: Math.min(window.devicePixelRatio, 2) };
 
   if (renderer) {
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(pr.value);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    new GLTFLoader().loadAsync(MODEL_URL).then(
-      (gltf) => {
-        const model = gltf.scene;
-        const b = new THREE.Box3().setFromObject(model);
-        const c = b.getCenter(new THREE.Vector3());
-        // centre on x / y, and put the turning axis behind the face
-        model.position.set(-c.x, -c.y, -(b.min.z + FACE_FORWARD_Z));
-        holder.add(model);
+    loadRisoHead(MODEL_URL, pr).then(
+      (head) => {
+        box.w = head.width;
+        box.h = head.height;
+        holder.add(head.object);
         headLoaded = true;
         layout();
         needsRender = true;
@@ -128,7 +121,7 @@ function init() {
     const t1 = easeOut(clamp((progress - 0.3) / 0.2));
     const t2 = easeOut(clamp((progress - 0.44) / 0.2));
     const t3 = easeOut(clamp((progress - 0.58) / 0.18));
-    const turn = easeInOut(clamp((progress - 0.25) / 0.75));
+    const turn = easeInOut(clamp((progress - 0.12) / 0.88));
 
     hero.style.setProperty("--head-in", headIn.toFixed(4));
     hero.style.setProperty("--t1", t1.toFixed(4));
@@ -138,7 +131,7 @@ function init() {
     hero.classList.toggle("cta-on", t3 > 0.6);
     document.body.style.setProperty("--shapes-o", clamp((progress - 0.6) / 0.35).toFixed(3));
 
-    // head slides in from the left edge, facing right, then turns to the left
+    // head slides in from the left edge, then spins one full turn
     const startX = -(visW / 2 + worldHeadW);
     pivot.position.x = startX * (1 - headIn);
     pivot.rotation.y = THREE.MathUtils.lerp(YAW_START, YAW_END, turn);

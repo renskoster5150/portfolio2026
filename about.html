@@ -11,6 +11,14 @@
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
+        }
+      }
+    </script>
   </head>
   <body class="about-page">
     <nav class="main-nav">
@@ -231,14 +239,7 @@
 
     <script src="script.js"></script>
     <script src="about.js"></script>
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
-        }
-      }
-    </script>
     <script type="module" src="about-3d.js"></script>
+    <script type="module" src="riso-bg.js"></script>
   </body>
 </html>

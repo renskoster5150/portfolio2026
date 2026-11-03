@@ -1,22 +1,13 @@
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { loadRisoHead } from "./riso-head.js";
+import { teardropGeometry, risoShapeMaterial, SHAPE_LOOKS } from "./riso-shapes.js";
 
 // ---- Config ---------------------------------------------------------------
-const MODEL_URL = "models/head.glb";
-const FACE_FORWARD_Z = 0.12; // same pivot as the home hero: behind the face shell
-// The scan has no back of the head, so the sway stays well inside the +/-35deg
-// that was checked on the mesh.
-const MAX_YAW = THREE.MathUtils.degToRad(24);
+const MODEL_URL = "models/head-riso.glb";
 const TILTS = [-13, 9, -5, 15, -9, 6].map((d) => THREE.MathUtils.degToRad(d));
-const BLOCKS = [
-  { color: 0xffd23f, sides: 64, r: 0.56, rot: 0 },
-  { color: 0xff8fc0, sides: 4, r: 0.7, rot: Math.PI / 4 },
-  { color: 0xa99bff, sides: 64, r: 0.58, rot: 0 },
-  { color: 0xff6b3d, sides: 3, r: 0.85, rot: Math.PI / 2 },
-  { color: 0x6fe3a5, sides: 6, r: 0.6, rot: 0 },
-];
+const LOOKS = [0, 1, 3]; // pink, blue and yellow teardrops behind the heads
 const DRIFT = 0.16; // spacings per second
-const SPACING = 1.5; // head widths between centres
+const SPACING = 1.55; // head widths between centres
 // ---------------------------------------------------------------------------
 
 const section = document.querySelector(".face-carousel");
@@ -35,7 +26,8 @@ function init() {
     section.classList.add("no-3d");
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const pr = { value: Math.min(window.devicePixelRatio, 2) };
+  renderer.setPixelRatio(pr.value);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
 
   const scene = new THREE.Scene();
@@ -43,13 +35,8 @@ function init() {
   camera.position.set(0, 0, 8);
   const VIS_H = 2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(15));
 
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x666666, 1.6));
-  const key = new THREE.DirectionalLight(0xffffff, 2.0);
-  key.position.set(2, 3, 4);
-  scene.add(key);
-
-  let template = null; // normalised head, 1 unit tall
-  const box = { w: 0.745, h: 0.959 };
+  let template = null; // head normalised to 1 unit tall
+  const box = { w: 0.81, h: 1 };
   let slots = [];
   let headH = 1; // world height of one head
   let spacing = 1;
@@ -61,26 +48,26 @@ function init() {
   let time = 0;
   let raf = 0;
 
-  const blockGeo = BLOCKS.map((b) => {
-    const g = new THREE.CircleGeometry(b.r, b.sides);
-    g.rotateZ(b.rot);
-    return g;
-  });
-  const blockMat = BLOCKS.map((b) => new THREE.MeshBasicMaterial({ color: b.color }));
+  const dropGeo = teardropGeometry();
+  const dropMats = LOOKS.map((i) => risoShapeMaterial({ ...SHAPE_LOOKS[i], pr }));
 
   function makeSlot(i) {
     const slot = new THREE.Group();
-    const blockIdx = i % BLOCKS.length;
-    const block = new THREE.Mesh(blockGeo[blockIdx], blockMat[blockIdx]);
-    block.position.z = -0.6;
-    slot.add(block);
+
+    const drop = new THREE.Group(); // teardrop behind the head, turning slowly
+    const dropMesh = new THREE.Mesh(dropGeo, dropMats[i % dropMats.length]);
+    dropMesh.scale.setScalar(1.45);
+    drop.add(dropMesh);
+    drop.position.set(0.1 * (i % 2 ? 1 : -1), -0.04, -0.75);
+    drop.rotation.z = (i * 1.9) % 6.28;
+    slot.add(drop);
 
     const pivot = new THREE.Group(); // yaw + nod
-    const head = template.clone(true);
-    pivot.add(head);
+    pivot.add(template.clone(true));
     slot.add(pivot);
     scene.add(slot);
-    return { slot, pivot, i, baseTilt: TILTS[i % TILTS.length] };
+    const dir = i % 2 ? 1 : -1;
+    return { slot, pivot, drop, i, dir, baseTilt: TILTS[i % TILTS.length] };
   }
 
   function clearSlots() {
@@ -99,7 +86,7 @@ function init() {
     visW = VIS_H * (w / h);
 
     const ratio = box.w / box.h;
-    const headPx = Math.min(0.6 * h, (0.62 * w) / ratio);
+    const headPx = Math.min(0.58 * h, (0.6 * w) / ratio);
     headH = (headPx / h) * VIS_H;
     spacing = headH * ratio * SPACING;
 
@@ -125,10 +112,10 @@ function init() {
       s.slot.position.set(x, bob, 0);
       s.slot.rotation.z =
         s.baseTilt + (reduceMotion ? 0 : Math.sin(t * 0.9 + s.i * 2.1) * 0.07);
-      s.pivot.rotation.y = reduceMotion
-        ? Math.sin(s.i * 1.7) * MAX_YAW * 0.6
-        : Math.sin(t * 0.8 + s.i * 1.7) * MAX_YAW;
+      // the new scan has a back, so the heads simply keep turning
+      s.pivot.rotation.y = reduceMotion ? s.i * 0.9 : s.dir * t * 0.5 + s.i * 1.3;
       s.pivot.rotation.x = reduceMotion ? 0 : Math.sin(t * 1.1 + s.i * 0.9) * 0.06;
+      s.drop.rotation.y = reduceMotion ? 0.4 * s.i : -s.dir * t * 0.35 + s.i;
     });
   }
 
@@ -183,18 +170,14 @@ function init() {
   });
   new ResizeObserver(layout).observe(canvas);
 
-  new GLTFLoader().loadAsync(MODEL_URL).then(
-    (gltf) => {
-      const model = gltf.scene;
-      const b = new THREE.Box3().setFromObject(model);
-      const c = b.getCenter(new THREE.Vector3());
-      box.w = b.max.x - b.min.x;
-      box.h = b.max.y - b.min.y;
-      model.position.set(-c.x, -c.y, -(b.min.z + FACE_FORWARD_Z));
+  loadRisoHead(MODEL_URL, pr).then(
+    (head) => {
+      box.w = head.width;
+      box.h = head.height;
       template = new THREE.Group();
       const holder = new THREE.Group();
       holder.scale.setScalar(1 / box.h);
-      holder.add(model);
+      holder.add(head.object);
       template.add(holder);
       layout();
       section.classList.add("is-ready");
