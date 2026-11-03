@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <title>Strategy</title>
+  <g fill="none" stroke="#232323" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10">
+    <circle cx="48" cy="48" r="33"/>
+    <path d="M48 7V16M89 48H80M48 89V80M7 48H16"/>
+  </g>
+  <g fill="#FF4D30">
+    <circle cx="48" cy="29" r="7"/>
+    <rect x="39.5" y="38.5" width="17" height="4"/>
+    <path d="M43.5 45.5c0 9-3 14-6.5 18.5h22c-3.5-4.5-6.5-9.5-6.5-18.5z"/>
+    <rect x="33" y="64" width="30" height="7"/>
+  </g>
+</svg>

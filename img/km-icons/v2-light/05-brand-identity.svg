@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <title>Brand &amp; Identity</title>
+  <g fill="none" stroke="#232323" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10">
+    <path d="M18 32V18h14"/><path d="M64 18h14v14"/>
+    <path d="M78 64v14H64"/><path d="M32 78H18V64"/>
+  </g>
+  <path d="M44 32h14L44 64H30Z" fill="#FFCE00"/>
+</svg>

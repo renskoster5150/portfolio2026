@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <title>Growth Platform B2B</title>
+  <g fill="none" stroke="#232323" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10">
+    <path d="M20 70V20h56"/>
+    <path d="M20 34h56"/>
+  </g>
+  <g fill="#232323">
+    <circle cx="29.2" cy="27" r="3"/><circle cx="39.6" cy="27" r="3"/>
+  </g>
+  <path d="M59 53v-8h14v8" fill="none" stroke="#2EBFA5" stroke-width="4" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10"/>
+  <rect x="45" y="53" width="39" height="29" fill="#2EBFA5"/>
+  <rect x="58.4" y="62.8" width="12.4" height="8.6" fill="#FFFFFF"/>
+</svg>

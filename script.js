@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!lightbox) return;
 
   const images = document.querySelectorAll(
-    ".week-grid-item img, .project-image-item .image-placeholder img, .image-placeholder img, .inline-image img",
+    ".week-grid-item img, .project-image-item .image-placeholder img, .image-placeholder img, .inline-image img, .hero-image-placeholder img, .shot img, .strip-page img",
   );
 
   images.forEach((img) => {
