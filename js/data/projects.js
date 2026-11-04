@@ -57,6 +57,7 @@ export const PROJECTS = [
     categories: ["branding"],
     summary: "Six main icons and nineteen sub icons for Klein Media's services, each cluster with its own colour.",
     thumb: image("img/km-icons/hero.webp", 1500, 868),
+    cover: image("img/km-icons/hero.webp", 1500, 868),
   },
   {
     slug: "qualiko-cookbook",
@@ -85,6 +86,7 @@ export const PROJECTS = [
     categories: ["branding", "ux-ui"],
     summary: "Logo, apparel mockups and a landing page for an up-and-coming sports brand.",
     thumb: image("img/thumbs/mockupaeckmaino.webp", 900, 591),
+    cover: image("img/Aeck/mockupaeckmaino.webp", 926, 608),
   },
   {
     slug: "axventures",
@@ -103,6 +105,7 @@ export const PROJECTS = [
     categories: ["exhibition"],
     summary: "A museum experience for the Wereldmuseum that helps teenagers question stereotypes about Asian women.",
     thumb: image("img/thumbs/MOCKUPDOOS.webp", 900, 600),
+    cover: image("img/WM/MOCKUPDOOS.webp", 1536, 1024),
   },
   {
     slug: "qualiko-freezer",
@@ -111,6 +114,7 @@ export const PROJECTS = [
     categories: ["editorial"],
     summary: "Freezer stickers that make Qualiko's products stand out in a busy supermarket.",
     thumb: image("img/thumbs/freerzermockup.webp", 900, 598),
+    cover: image("img/qualiko/freerzermockup.webp", 1600, 1063),
   },
 
   // Audio-visual work: the pages exist but are left out of every list.

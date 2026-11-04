@@ -11,7 +11,7 @@ const pageStart = performance.now();
 let observer = null;
 
 /** Wraps every word in <span class="word"><span>word</span></span>, keeping inner elements. */
-export function splitWords(el) {
+function splitWords(el) {
   if (el.hasAttribute("data-split-done")) return;
   let index = 0;
   const visit = (node) => {

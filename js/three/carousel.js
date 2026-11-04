@@ -1,10 +1,10 @@
-// About page: an endless row of riso-printed heads drifting sideways, each
-// turning, bobbing and tilting on its own. Scrolling pushes the row along.
+// About page: an endless row of riso-printed heads drifting sideways by
+// themselves, each turning, bobbing and tilting on its own.
 
 import * as THREE from "three";
 import { loadRisoHead } from "./head.js";
 import { createRenderer } from "./riso.js";
-import { onFrame, scroll } from "../lib/ticker.js";
+import { onFrame } from "../lib/ticker.js";
 import { reducedMotion } from "../lib/utils.js";
 
 const TILTS = [-13, 9, -5, 15, -9, 6].map(THREE.MathUtils.degToRad);
@@ -30,11 +30,9 @@ export function initHeadCarousel(section) {
   let slots = [];
   let headH = 1;
   let spacing = 1;
-  let canvasH = 1;
   let offset = 0;
   let time = 0;
   let visible = false;
-  let lastScroll = scroll.smooth;
 
   function makeSlot(i) {
     const slot = new THREE.Group();
@@ -61,7 +59,6 @@ export function initHeadCarousel(section) {
   function layout() {
     const { clientWidth: w, clientHeight: h } = canvas;
     if (!w || !h) return;
-    canvasH = h;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -79,11 +76,9 @@ export function initHeadCarousel(section) {
   }
 
   onFrame((dt) => {
-    const scrolled = scroll.smooth - lastScroll;
-    lastScroll = scroll.smooth;
     if (!visible || !template || reducedMotion) return;
     time += dt;
-    offset -= DRIFT * spacing * dt + scrolled * (VIEW_H / canvasH) * 0.6;
+    offset -= DRIFT * spacing * dt;
     pose();
   });
 
