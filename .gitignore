@@ -1,13 +1,17 @@
 # macOS
 .DS_Store
 
-# Raw video / audio / archives (too large for GitHub; videos are embedded from YouTube)
-*.MOV
-*.mov
-*.mp4
+# Raw source files stay outside the site. Export web versions instead:
+# images as .webp in img/, sound as .m4a in audio/, video on YouTube.
 *.wav
-*.asd
+*.aif
+*.aiff
+*.mov
+*.MOV
+*.mp4
 *.zip
+*.psd
+*.ai
 
 # Large source PDFs
 ArtisticVision_RensKoster.pdf
