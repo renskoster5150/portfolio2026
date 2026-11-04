@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aeck - Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aeck — Rens Koster</title>
+    <meta name="description" content="Logo, apparel mockups and a responsive landing page for the sportswear brand Aeck. Designed by Rens Koster." />
+    <link rel="canonical" href="https://renskoster.com/project-aeck.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rens Koster" />
+    <meta property="og:title" content="Aeck — Rens Koster" />
+    <meta property="og:description" content="Logo, apparel mockups and a responsive landing page for the sportswear brand Aeck. Designed by Rens Koster." />
+    <meta property="og:url" content="https://renskoster.com/project-aeck.html" />
+    <meta property="og:image" content="https://renskoster.com/img/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono&display=swap" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/boot.js"></script>
     <script type="importmap">
       {
         "imports": {
@@ -19,137 +30,70 @@
         }
       }
     </script>
+    <script type="module" src="js/main.js"></script>
   </head>
-  <body class="project-detail-page cat-branding">
-    <nav class="main-nav">
-      <div class="nav-container">
-        <a href="index.html" class="logo">RENS KOSTER</a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html" class="active">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <body data-page="project" data-project="aeck">
+    <a class="skip-link" href="#main">skip to content</a>
+    <header class="site-header"></header>
 
-    <main class="project-detail-container">
-      <a href="projects.html" class="back-button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7" /></svg> Back to Projects</a>
-
-      <header class="project-header">
-        <div class="project-meta">
-          <span class="project-category">UX design &amp; Branding</span>
-          <span class="project-date">2025</span>
-        </div>
-        <h1 class="project-title">Aeck</h1>
-        <p class="project-subtitle">Logo, mockups and a landing page for an up-and-coming sports brand.</p>
+    <main id="main">
+      <header class="case-head wrap">
+        <a class="back-link" href="projects.html"><svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg> all projects</a>
+        <p class="case-meta tags"><span class="tag tag--accent">branding</span><span class="tag tag--accent">ux/ui</span><span class="tag">2025</span></p>
+        <h1 class="case-title" data-split data-reveal="words">Aeck</h1>
+        <p class="case-lead" data-reveal="up">Logo, apparel mockups and a landing page for an up-and-coming sports brand.</p>
       </header>
 
-      <div class="project-hero"><div class="hero-image-placeholder"><img src="img/Aeck/mockupaeckmaino.webp" alt="Aeck" width="926" height="608" fetchpriority="high"></div></div>
+      <figure class="case-cover wrap" data-reveal="clip" data-zoom>
+        <img src="img/Aeck/mockupaeckmaino.webp" alt="Athlete wearing an Aeck shirt" width="926" height="608" fetchpriority="high" />
+      </figure>
 
-      <section class="project-section">
-        <div class="project-content">
-          <div class="content-sidebar"><h2>Project Overview</h2></div>
-          <div class="content-main">
-<div class="project-details-grid"><div class="detail-item"><h4>Role</h4><p>Graphic designer</p></div><div class="detail-item"><h4>Timeline</h4><p>4 weeks</p></div><div class="detail-item"><h4>Tools</h4><p>Adobe Illustrator, Photoshop, Figma</p></div><div class="detail-item"><h4>Type</h4><p>Internship project</p></div></div>
-          </div>
+      <dl class="case-facts wrap" data-stagger>
+        <div data-reveal="up"><dt>role</dt><dd>Graphic designer</dd></div>
+        <div data-reveal="up"><dt>timeline</dt><dd>4 weeks</dd></div>
+        <div data-reveal="up"><dt>tools</dt><dd>Adobe Illustrator, Photoshop, Figma</dd></div>
+        <div data-reveal="up"><dt>type</dt><dd>Internship project</dd></div>
+      </dl>
+
+      <section class="case-section wrap">
+        <h2>the challenge</h2>
+        <div class="prose" data-reveal="up">
+          <p>For my internship I redesigned the identity of the sportswear brand AECK. It had to feel premium and energetic, work on apparel and online, and stay true to the owner’s vision.</p>
         </div>
       </section>
 
-      <section class="project-section">
-        <div class="project-content">
-          <div class="content-sidebar"><h2>The Challenge</h2></div>
-          <div class="content-main">
-<p>For my internship I redesigned the identity of the sportswear brand AECK. It had to feel premium and energetic, work on apparel and online, and stay true to the owner’s vision.</p>
-          </div>
+      <section class="case-section wrap">
+        <h2>the solution</h2>
+        <div class="prose" data-reveal="up">
+          <p>After researching sportswear trends I explored several logo concepts, then built the chosen direction into a full identity: bold type, a minimal palette, realistic apparel mockups and a responsive landing page. Several concepts went through multiple rounds of feedback with the owner.</p>
         </div>
       </section>
 
-      <section class="project-section">
-        <div class="project-content">
-          <div class="content-sidebar"><h2>The Solution</h2></div>
-          <div class="content-main">
-<p>After researching sportswear trends I explored several logo concepts, then built the chosen direction into a full identity: bold type, a minimal palette, realistic apparel mockups and a responsive landing page. Several concepts went through multiple rounds of feedback with the owner.</p>
-          </div>
+      <section class="case-media wrap" aria-label="Images and media">
+        <div class="gallery" style="--cols: 3" data-zoom data-stagger>
+          <figure class="is-contain" data-reveal="up"><img src="img/Aeck/mockup1.webp" alt="Sneaker mockup" width="1600" height="1067" loading="lazy" decoding="async" /><figcaption>Sneaker mockup</figcaption></figure>
+          <figure class="is-contain" data-reveal="up"><img src="img/Aeck/mockup2.webp" alt="Football kit mockup" width="1600" height="1067" loading="lazy" decoding="async" /><figcaption>Football kit mockup</figcaption></figure>
+          <figure class="is-contain" data-reveal="up"><img src="img/Aeck/mockup3.webp" alt="Football boot mockup" width="1536" height="1024" loading="lazy" decoding="async" /><figcaption>Football boot mockup</figcaption></figure>
         </div>
-      </section>
 
-      <section class="project-images-section">
-<div class="shot-grid cols-3">
-<figure class="shot contain"><img src="img/Aeck/mockup1.webp" alt="Apparel mockup" width="1600" height="1067" loading="lazy" decoding="async"><figcaption class="image-caption">Apparel mockup</figcaption></figure>
-<figure class="shot contain"><img src="img/Aeck/mockup2.webp" alt="Apparel mockup" width="1600" height="1067" loading="lazy" decoding="async"><figcaption class="image-caption">Apparel mockup</figcaption></figure>
-<figure class="shot contain"><img src="img/Aeck/mockup3.webp" alt="Apparel mockup" width="1536" height="1024" loading="lazy" decoding="async"><figcaption class="image-caption">Apparel mockup</figcaption></figure>
-</div>
-<div class="inline-carousel page-scroll">
-              <div class="scroll-frame"><img src="img/Aeck/pageaeck.webp" alt="Landing page Aeck, scroll to see the full page" width="1000" height="3195" loading="lazy" decoding="async"></div>
-              <p class="image-caption">Landing page Aeck, scroll to see the full page</p>
+        <div class="media-narrow" data-reveal="up">
+          <h2 class="media-title">the landing page</h2>
+          <div class="browser" data-browser>
+            <div class="browser__window">
+              <div class="browser__bar" aria-hidden="true">
+                <span class="browser__dots"><span></span><span></span><span></span></span>
+                <span class="browser__address">aeck / landing page</span>
+              </div>
+              <div class="browser__view" tabindex="0" aria-label="Aeck landing page, scrollable"><img src="img/Aeck/pageaeck.webp" alt="Aeck landing page" width="1000" height="3195" loading="lazy" decoding="async" /></div>
             </div>
-</section>
-
-      <section class="project-navigation">
-        <a href="projects.html" class="nav-link-btn">
-          <span class="nav-label">Back to</span>
-          <span class="nav-title">All Projects</span>
-        </a>
+            <p class="caption">landing page: scroll inside the window to see all of it</p>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer class="main-footer">
-      <div class="footer-mega" aria-hidden="true">RENS KOSTER</div>
-      <div class="footer-content">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Let's Connect</h3>
-            <p>Open to collaborations and learning opportunities</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Navigate</h4>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-              </ul>
-            </div>
-            <div class="footer-column">
-              <h4>Connect</h4>
-              <ul>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="https://www.instagram.com/rens_k.s/" target="_blank"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/rens-koster-11b3662b2/"
-                    target="_blank"
-                    >LinkedIn</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Portfolio. All rights reserved.</p>
-          <p>Designed & Developed with passion</p>
-        </div>
-      </div>
-    </footer>
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-      <button class="lightbox-close" aria-label="Close">&times;</button>
-      <img src="" alt="" id="lightbox-img" />
-    </div>
-    <script src="scroll-fx.js"></script>
-    <script src="project-colors.js"></script>
-    <script src="script.js"></script>
-    <script type="module" src="riso-bg.js"></script>
+    <nav class="next-project" aria-label="Next project" data-next></nav>
+
+    <footer class="site-footer"></footer>
   </body>
 </html>

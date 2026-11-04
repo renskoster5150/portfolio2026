@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects - Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Rens Koster</title>
+    <meta name="description" content="Selected work by Rens Koster: brand identities, websites, editorial design and interactive exhibitions for clients like Klein Media, Qualiko, Foam and the Wereldmuseum." />
+    <link rel="canonical" href="https://renskoster.com/projects.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rens Koster" />
+    <meta property="og:title" content="Projects — Rens Koster" />
+    <meta property="og:description" content="Selected work by Rens Koster: brand identities, websites, editorial design and interactive exhibitions for clients like Klein Media, Qualiko, Foam and the Wereldmuseum." />
+    <meta property="og:url" content="https://renskoster.com/projects.html" />
+    <meta property="og:image" content="https://renskoster.com/img/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono&display=swap" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/boot.js"></script>
     <script type="importmap">
       {
         "imports": {
@@ -19,482 +30,29 @@
         }
       }
     </script>
+    <script type="module" src="js/main.js"></script>
   </head>
-  <body class="projects-page">
-    <nav class="main-nav">
-      <div class="nav-container">
-        <a href="index.html" class="logo">RENS KOSTER</a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html" class="active">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <body data-page="projects">
+    <a class="skip-link" href="#main">skip to content</a>
+    <header class="site-header"></header>
 
-    <main class="projects-container">
-      <div class="projects-header">
-        <h1 class="page-title">
-          <span class="title-line">Selected</span>
-          <span class="title-line emphasis">Projects</span>
+    <main id="main" class="page">
+      <header class="page-head wrap">
+        <h1 class="page-title" data-split data-reveal="words">
+          <span class="title-line">selected</span>
+          <span class="title-line sticker">projects</span>
         </h1>
-        <p class="projects-intro">
-          A collection of my work from classes, personal projects, and
-          experimental designs as I develop my skills
+        <p class="page-intro" data-reveal="up">
+          Brand identities, websites, editorial design and interactive exhibitions, from internship work for
+          clients like Klein Media and Qualiko to museum experiences for Foam and the Wereldmuseum.
         </p>
+      </header>
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="Filter projects by discipline" data-filters></div>
+        <ul class="grid" data-grid></ul>
       </div>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="branding">Branding</button>
-        <button class="filter-btn" data-filter="UX/UI">UX/UI</button>
-        <button class="filter-btn" data-filter="editorial">Editorial</button>
-        <button class="filter-btn" data-filter="Exhibition">Exhibition</button>
-      </div>
-
-
-
-      <div class="projects-grid">
-
-        <a
-          href="project-km-brandbook.html"
-          class="project-card"
-          data-category="branding"
-        >
-          <div class="project-image">
-            <img src="img/thumbs/km-brandbook.webp" alt="" width="1200" height="900" decoding="async">
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Klein Media Brand Book</h3>
-            <p>
-              A complete brand manual for an organic growth agency: logo, colour, type, icons and the shard in use.
-            </p>
-            <span class="project-tag">Branding</span>
-          </div>
-        </a>
-        <a
-          href="project-km-icons.html"
-          class="project-card"
-          data-category="branding"
-        >
-          <div class="project-image">
-            <img src="img/thumbs/km-icons.webp" alt="" width="600" height="347" loading="lazy" decoding="async">
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Klein Media Icons</h3>
-            <p>
-              Six main icons and nineteen sub icons for Klein Media's services, each cluster with its own colour.
-            </p>
-            <span class="project-tag">Branding</span>
-          </div>
-        </a>
-
-      
-        <a
-          href="project-qualiko-cookbook.html"
-          class="project-card"
-          data-category="editorial"
-        >
-          <div class="project-image">
-            <img src="img/thumbs/Frontandbackv1.webp" alt="" width="900" height="637" loading="lazy" decoding="async">
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Qualiko Cookbook layout</h3>
-            <p>
-              Designed an entire Cookbook for Qualiko, displaying their recipes.
-            </p>
-            <span class="project-tag">Editorial</span>
-          </div>
-        </a>
-        <a
-          href="project-main.html"
-          class="project-card"
-          data-category="Exhibition"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/finalexhibit3.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Ze zei het al</h3>
-            <p>
-              Created an interactive audio-visual installation using projection, sound, and audience interaction to explore how women’s experiences have been misinterpreted in medical systems.</p>
-            <span class="project-tag">Exhibition</span>
-            </div>
-        </a>
-        <a
-          href="project-aeck.html"
-          class="project-card"
-          data-category="branding"
-        >
-          <div class="project-image">
-            <img src="img/thumbs/mockupaeckmaino.webp" alt="" width="900" height="591" loading="lazy" decoding="async">
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Aeck company</h3>
-            <p>
-              Making logos, mockups and a landing page for a new up and coming
-              sportbrand: Aeck
-            </p>
-            <span class="project-tag">Branding</span>
-          </div>
-        </a>
-
-        <!-- <a
-          href="project-main.html"
-          class="project-card"
-          data-category="Visual"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/finalexhibit3.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Ze zei het al</h3>
-            <p>
-              Created an interactive audio-visual installation combining projection, sound, and audience participation to explore how women's experiences have historically been observed, interpreted, and misdiagnosed within medical systems.
-            </p>
-            <span class="project-tag">Visual</span>
-          </div>
-        </a>
-        <a
-          href="project-abstraction.html"
-          class="project-card"
-          data-category="Visual"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/Secondediton.webp" alt="" width="660" height="926" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Product van je Omgeving</h3>
-            <p>
-              Created an abstract audio-visual installation combining
-              projection, sound, and physical objects to convey a conceptual
-              story without the use of text.
-            </p>
-            <span class="project-tag">Visual</span>
-          </div>
-        </a>
-        <a
-          href="project-windowinto.html"
-          class="project-card"
-          data-category="Visual"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/windowgood.webp" alt="" width="900" height="725" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Safe Space</h3>
-            <p>
-              Created a audio-visual installation that uses
-              projection and sound to pull the viewer into a different world,
-              turning the piece into a kind of portal rather than just something
-              to watch.
-            </p>
-            <span class="project-tag">Visual</span>
-          </div>
-        </a>
-        <a
-          href="project-shiftingcontext.html"
-          class="project-card"
-          data-category="Visual"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/presentators.webp" alt="" width="772" height="558" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Framing Story</h3>
-            <p>
-              Created an audio-visual installation that presents the same subject
-              from two contrasting perspectives, using
-              projection, sound, and designed text to highlight how context
-              changes the way events are perceived.
-            </p>
-            <span class="project-tag">Visual</span>
-          </div>
-          <a
-          href="project-tutorial.html"
-          class="project-card"
-          data-category="Visual"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/thedish.webp" alt="" width="900" height="918" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Thai Basil Chicken Tutorial</h3>
-            <p>
-              Created a tutorial video that demonstrates a newly developed skill, using different camera perspectives.
-            </p>
-            <span class="project-tag">Visual</span>
-          </div>
-          
-        </a>
-        <a
-          href="project-soundscape.html"
-          class="project-card"
-          data-category="Audio"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/robber.webp" alt="" width="506" height="366" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Robbery</h3>
-            <p>
-              Created an audio piece that tells a story using only sound, without music to guide the listener.
-            </p>
-            <span class="project-tag">Audio</span>
-          </div>
-        </a>
-        <a
-          href="project-nummer.html"
-          class="project-card"
-          data-category="Audio"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/bereboot.webp" alt="" width="616" height="616" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Bereboot (Uptempo remix)</h3>
-            <p>
-              Created a fully produced original track in the uptempo hardcore genre, focusing on high energy, aggressive sound design, and fast pacing to shape a clear and intense musical identity.
-            </p>
-            <span class="project-tag">Audio</span>
-          </div>
-        </a>
-        <a
-          href="project-jokerscore.html"
-          class="project-card"
-          data-category="Audio"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/jokeronstairs.webp" alt="" width="682" height="656" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Joker Score</h3>
-            <p>
-Created a custom audio score for a selected scene from Joker, focusing on building tension and matching the mood of the visuals through sound design.</p>
-            <span class="project-tag">Audio</span>
-          </div>
-        </a> -->
-        <a
-          href="project-axventures.html"
-          class="project-card"
-          data-category="UX/UI"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/frontpage.webp" alt="" width="900" height="587" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Axventures new site design</h3>
-            <p>
-              A professional website for a spiritual care practice supporting
-              professional footballers and coaches.
-            </p>
-            <span class="project-tag">UX/UI</span>
-          </div>
-        </a>
-<a
-          href="project-breek-het-beeld.html"
-          class="project-card"
-          data-category="Exhibition"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/MOCKUPDOOS.webp" alt="" width="900" height="600" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Breek het Beeld</h3>
-            <p>
-              An interactive museum experience made for the Wereld Museum in
-              Amsterdam
-            </p>
-            <span class="project-tag">Exhibition</span>
-          </div>
-        </a>
-
-    
-        <a
-          href="project-qualiko-freezer.html"
-          class="project-card"
-          data-category="editorial"
-        >
-          <div class="project-image">
-            <div><img src="img/thumbs/freerzermockup.webp" alt="" width="900" height="598" loading="lazy" decoding="async"></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Qualiko Freezer Stickers</h3>
-            <p>
-              Created a visual design for Qualiko Freezers to showcase their
-              food products in a clean, modern way.
-            </p>
-            <span class="project-tag">Editorial</span>
-          </div>
-        </a>
-
-        <!-- <a
-          href="project-bread-book.html"
-          class="project-card"
-          data-category="UX/UI"
-        >
-          <div class="project-image">
-            <div
-              class="placeholder-image"
-              style="
-                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-              "
-            ></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Bread Book</h3>
-            <p>
-              UX/UI concept for a baking app, prioritizing clear instructions
-              and interesting features.
-            </p>
-            <span class="project-tag">UX/UI</span>
-          </div>
-        </a> -->
-
-        <!-- <a
-          href="project-public-city-jazz.html"
-          class="project-card"
-          data-category="UX/UI"
-        >
-          <div class="project-image">
-            <div
-              class="placeholder-image"
-              style="
-                background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-              "
-            ></div>
-            <div class="project-overlay">
-              <span class="view-project">View Project</span>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Public City Jazz</h3>
-            <p>
-              UX/UI concept for the Public City Jazz event in Rotterdam, using
-              their corporate identity
-            </p>
-            <span class="project-tag">UX/UI</span>
-          </div>
-        </a>
-      </div> -->
     </main>
 
-    <section class="cta-section">
-      <div class="cta-content">
-        <h2>Want to Collaborate?</h2>
-        <p>
-          I'm always interested in working on new projects and learning
-          opportunities
-        </p>
-        <a href="contact.html" class="btn btn-primary">Let's Chat</a>
-      </div>
-    </section>
-
-    <footer class="main-footer">
-      <div class="footer-mega" aria-hidden="true">RENS KOSTER</div>
-      <div class="footer-content">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Let's Connect</h3>
-            <p>Open to collaborations and learning opportunities</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Navigate</h4>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-              </ul>
-            </div>
-            <div class="footer-column">
-              <h4>Connect</h4>
-              <ul>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="https://www.instagram.com/rens_k.s/" target="_blank"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/rens-koster-11b3662b2/"
-                    target="_blank"
-                    >LinkedIn</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Portfolio. All rights reserved.</p>
-          <p>Designed & Developed with passion</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="scroll-fx.js"></script>
-    <script src="project-colors.js"></script>
-
-    <script src="script.js"></script>
-    <script type="module" src="riso-bg.js"></script>
+    <footer class="site-footer"></footer>
   </body>
 </html>
