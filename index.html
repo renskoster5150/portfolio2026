@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio - Digital & Graphic Designer</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rens Koster — Digital &amp; Graphic Designer, Amsterdam</title>
+    <meta name="description" content="Portfolio of Rens Koster, a digital and graphic designer in Amsterdam: brand identities, websites, editorial design and interactive exhibitions." />
+    <link rel="canonical" href="https://renskoster.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rens Koster" />
+    <meta property="og:title" content="Rens Koster — Digital &amp; Graphic Designer, Amsterdam" />
+    <meta property="og:description" content="Portfolio of Rens Koster, a digital and graphic designer in Amsterdam: brand identities, websites, editorial design and interactive exhibitions." />
+    <meta property="og:url" content="https://renskoster.com/" />
+    <meta property="og:image" content="https://renskoster.com/img/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono&display=swap" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/boot.js"></script>
     <script type="importmap">
       {
         "imports": {
@@ -19,143 +30,81 @@
         }
       }
     </script>
+    <script type="module" src="js/main.js"></script>
   </head>
-  <body class="home-page">
-    <nav class="main-nav">
-      <div class="nav-container">
-        <a href="index.html" class="logo">RENS KOSTER</a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <body data-page="home">
+    <a class="skip-link" href="#main">skip to content</a>
+    <header class="site-header"></header>
 
-    <main class="hero-scroll" id="hero">
-      <div class="hero-fixed">
-        <h1 class="hero-title">
-          <span class="title-line hero-portfolio">Portfolio</span>
-          <span class="title-line hero-name">
-            <span class="name-word name-rens">Rens</span>
-            <span class="name-word name-koster">Koster</span>
-          </span>
-          <span class="title-line emphasis hero-role">Digital/Graphic design</span>
-        </h1>
-        <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <div class="hero-cta">
-          <a href="projects.html" class="btn btn-primary">View Projects</a>
-          <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+    <main id="main">
+      <section class="hero" aria-label="Introduction">
+        <div class="hero__stage">
+          <h1 class="hero__title" aria-label="Rens Koster, digital and graphic designer">
+            <span class="hero__portfolio">portfolio</span>
+            <span class="hero__name"><span class="hero__first">rens</span> <span class="hero__last">koster</span></span>
+            <span class="hero__role sticker">digital/graphic design</span>
+          </h1>
+          <canvas class="hero__canvas" aria-hidden="true"></canvas>
+          <button class="hero__hit" type="button" aria-label="Spin the 3D head" data-cursor="spin me" hidden></button>
+          <div class="hero__cta">
+            <a class="btn btn--solid" href="projects.html">view projects <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <a class="btn" href="contact.html">get in touch</a>
+          </div>
+          <div class="hero__meta">
+            <p>digital &amp; graphic designer</p>
+            <p class="hero__scroll" aria-hidden="true">scroll</p>
+            <p class="status">amsterdam, open to opportunities</p>
+          </div>
         </div>
-        <div class="scroll-indicator">
-          <span>Scroll</span>
-          <div class="scroll-line"></div>
+      </section>
+
+      <div class="after-hero">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <div class="marquee__group"><span>brand identity</span><span>digital design</span><span>print &amp; editorial</span><span>exhibitions</span></div>
+            <div class="marquee__group"><span>brand identity</span><span>digital design</span><span>print &amp; editorial</span><span>exhibitions</span></div>
+          </div>
         </div>
+
+        <section class="intro wrap" aria-labelledby="intro-title">
+          <h2 class="eyebrow" id="intro-title">(01) hello</h2>
+          <p class="statement">
+            i'm rens, a digital &amp; graphic designer in amsterdam. i design
+            <a class="sticker" href="projects.html?filter=branding" style="--accent: var(--pink)">brand identities</a>,
+            <a class="sticker" href="projects.html?filter=ux-ui" style="--accent: var(--lilac)">websites</a>,
+            <a class="sticker" href="projects.html?filter=editorial" style="--accent: var(--yellow)">print</a> and
+            <a class="sticker" href="projects.html?filter=exhibition" style="--accent: var(--mint)">exhibitions</a>
+            that are clear, engaging and easy to use.
+          </p>
+          <div class="intro__foot">
+            <ul class="facts" data-stagger>
+              <li data-reveal="up"><span>studying</span><span>communication &amp; multimedia design, hogeschool van amsterdam</span></li>
+              <li data-reveal="up"><span>experience</span><span>internship at brandium design agency</span></li>
+              <li data-reveal="up"><span>right now</span><span>minor audio visual design</span></li>
+            </ul>
+            <a class="btn" href="about.html">more about me <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+        </section>
+
+        <section class="work wrap" aria-labelledby="work-title">
+          <div class="section-head">
+            <h2 class="section-title" id="work-title" data-split data-reveal="words">selected work</h2>
+            <a class="link-arrow" href="projects.html">all <span data-project-count>8</span> projects <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </div>
+          <ol class="stack" data-featured></ol>
+          <p class="work__more"><a class="btn btn--solid" href="projects.html">view all <span data-project-count>8</span> projects <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+        </section>
+
+        <section class="services wrap" aria-labelledby="services-title">
+          <div class="section-head">
+            <h2 class="section-title" id="services-title" style="--dot: var(--pink)" data-split data-reveal="words">what i do</h2>
+            <p class="section-note">pick a speciality to jump straight to the matching projects</p>
+          </div>
+          <ul class="services__list" data-specialities data-stagger></ul>
+        </section>
       </div>
     </main>
 
-    <div class="after-hero">
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <div class="marquee-group">
-          <span>Brand Identity</span>
-          <span>Digital Design</span>
-          <span>Print &amp; Editorial</span>
-        </div>
-        <div class="marquee-group">
-          <span>Brand Identity</span>
-          <span>Digital Design</span>
-          <span>Print &amp; Editorial</span>
-        </div>
-      </div>
-    </div>
-
-    <section class="capabilities">
-      <div class="capabilities-content">
-        <div class="capabilities-text">
-          <h2>Exploring Design<br />Through Learning</h2>
-          <p>
-            As a design student, I'm passionate about developing my skills
-            across digital and print media. Each project is an opportunity to
-            learn, experiment, and push my creative boundaries while building a
-            strong foundation in design principles.
-          </p>
-          <a href="about.html" class="btn btn-secondary">Learn More About Me</a>
-        </div>
-        <div class="capabilities-list">
-          <div class="capability-item">
-            <span class="capability-number">01</span>
-            <h3>Brand Identity</h3>
-            <p>Logo design, visual systems, brand guidelines</p>
-          </div>
-          <div class="capability-item">
-            <span class="capability-number">02</span>
-            <h3>Digital Design</h3>
-            <p>UX/UI design, web design, app interfaces</p>
-          </div>
-          <div class="capability-item">
-            <span class="capability-number">03</span>
-            <h3>Print & Editorial</h3>
-            <p>Magazine layouts, packaging, print collateral</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="main-footer">
-      <div class="footer-mega" aria-hidden="true">RENS KOSTER</div>
-      <div class="footer-content">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Let's Connect</h3>
-            <p>Open to collaborations and learning opportunities</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Navigate</h4>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-              </ul>
-            </div>
-            <div class="footer-column">
-              <h4>Connect</h4>
-              <ul>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="https://www.instagram.com/rens_k.s/" target="_blank"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/rens-koster-11b3662b2/"
-                    target="_blank"
-                    >LinkedIn</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Portfolio. All rights reserved.</p>
-          <p>Designed & Developed with passion</p>
-        </div>
-      </div>
-    </footer>
-    </div>
-
-    <script src="script.js"></script>
-    <script type="module" src="head-3d.js"></script>
-    <script type="module" src="riso-bg.js"></script>
+    <footer class="site-footer"></footer>
   </body>
 </html>

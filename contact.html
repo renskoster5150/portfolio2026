@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact - Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Rens Koster</title>
+    <meta name="description" content="Get in touch with Rens Koster, digital and graphic designer in Amsterdam, about a job, internship, project or collaboration." />
+    <link rel="canonical" href="https://renskoster.com/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rens Koster" />
+    <meta property="og:title" content="Contact — Rens Koster" />
+    <meta property="og:description" content="Get in touch with Rens Koster, digital and graphic designer in Amsterdam, about a job, internship, project or collaboration." />
+    <meta property="og:url" content="https://renskoster.com/contact.html" />
+    <meta property="og:image" content="https://renskoster.com/img/og.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono&display=swap" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/boot.js"></script>
     <script type="importmap">
       {
         "imports": {
@@ -19,254 +30,98 @@
         }
       }
     </script>
+    <script type="module" src="js/main.js"></script>
   </head>
-  <body class="contact-page">
-    <nav class="main-nav">
-      <div class="nav-container">
-        <a href="index.html" class="logo">RENS KOSTER</a>
-        <button class="mobile-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <body data-page="contact">
+    <a class="skip-link" href="#main">skip to content</a>
+    <header class="site-header"></header>
 
-    <main class="contact-container">
-      <div class="contact-header">
-        <h1 class="page-title">
-          <span class="title-line">Let's</span>
-          <span class="title-line emphasis">Connect</span>
+    <main id="main" class="page">
+      <header class="page-head wrap">
+        <h1 class="page-title" data-split data-reveal="words">
+          <span class="title-line">let's</span>
+          <span class="title-line sticker">connect</span>
         </h1>
-        <p class="contact-intro">
-          Interested in collaborating on a project or just want to connect? I'd
-          love to hear from you. Fill out the form below or reach out directly
-          through email or social media.
+        <p class="page-intro" data-reveal="up">
+          Looking for a designer for your team or project, or just want to talk design? I’d love to hear from you.
+          Send a message below or email me directly.
         </p>
-      </div>
+      </header>
 
-      <div class="contact-content">
-  <div class="contact-form-section">
-    <form
-      class="contact-form"
-      action="https://formspree.io/f/mvzlkbew"
-      method="POST"
-    >
-      <div class="form-group">
-        <label for="name">Your Name *</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          placeholder="John Doe"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          placeholder="john@example.com"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="+31 6 12345678"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <select id="subject" name="subject">
-          <option value="">Select a topic</option>
-          <option value="collaboration">Collaboration</option>
-          <option value="project">Project Inquiry</option>
-          <option value="question">Question</option>
-          <option value="feedback">Feedback</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div class="form-group full-width">
-        <label for="message">Your Message *</label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows="6"
-          placeholder="Tell me what's on your mind..."
-        ></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-submit">
-        Send Message
-      </button>
-
-      <p class="form-note">* Required fields</p>
-    </form>
-  </div>
-
-        <div class="contact-info-section">
-          <div class="contact-info-card">
-            <h3>Get in Touch with Me</h3>
-            <div class="info-item">
-              <span class="info-label">Email</span>
-              <a href="mailto:renskoster5@gmail.com">renskoster5@gmail.com</a>
+      <div class="contact wrap">
+        <div class="contact__direct" data-reveal="up">
+          <p class="label">email me directly</p>
+          <a class="big-email" href="mailto:renskoster5@gmail.com">renskoster5@gmail.com</a>
+          <p><button class="btn" type="button" data-copy="renskoster5@gmail.com">copy address</button></p>
+          <dl class="contact__details">
+            <div><dt>phone</dt><dd><a href="tel:+31615467907">+31 6 15467907</a></dd></div>
+            <div><dt>based in</dt><dd>Amsterdam, the Netherlands</dd></div>
+            <div><dt>availability</dt><dd class="status">open to opportunities, usually replies within 48 hours</dd></div>
+            <div>
+              <dt>elsewhere</dt>
+              <dd class="contact__socials">
+                <a class="btn" href="https://www.linkedin.com/in/rens-koster-11b3662b2/" target="_blank" rel="noopener">linkedin <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a class="btn" href="https://www.instagram.com/rens_k.s/" target="_blank" rel="noopener">instagram <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              </dd>
             </div>
-            <div class="info-item">
-              <span class="info-label">Phone</span>
-              <a href="tel:+31615467907">+31 6 15467907</a>
-            </div>
-            <div class="info-item">
-              <span class="info-label">Location</span>
-              <p>Amsterdam, Netherlands</p>
-            </div>
-          </div>
-
-          <div class="contact-info-card">
-            <h3>Follow Me</h3>
-            <div class="social-links">
-              <a
-                href="https://www.instagram.com/rens_k.s/"
-                target="_blank"
-                class="social-link"
-              >
-                <span>Instagram</span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                </svg>
-              </a>
-              </a>
-              <a href="https://www.linkedin.com/in/rens-koster-11b3662b2/" target="_blank" class="social-link">
-                <span>LinkedIn</span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-info-card">
-            <h3>Availability</h3>
-            <p>
-              I'm currently open to collaborations, project opportunities, and
-              connecting with other creatives. I typically respond within 24-48
-              hours.
-            </p>
-            <div class="availability-status">
-              <span class="status-indicator"></span>
-              <span>Open to opportunities</span>
-            </div>
-          </div>
+          </dl>
         </div>
+
+        <form class="contact-form" action="https://formspree.io/f/mvzlkbew" method="POST" data-form data-reveal="up">
+          <h2>send a message</h2>
+          <div class="field">
+            <label for="name">your name *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe" />
+          </div>
+          <div class="field">
+            <label for="email">email address *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="jane@studio.com" />
+          </div>
+          <div class="field field--full">
+            <label for="subject">what is it about?</label>
+            <select id="subject" name="subject">
+              <option value="">pick a topic</option>
+              <option>job or internship</option>
+              <option>project inquiry</option>
+              <option>collaboration</option>
+              <option>question</option>
+              <option>something else</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="message">your message *</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your team, project or idea…"></textarea>
+          </div>
+          <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_subject" value="New message via renskoster.com" />
+          <div class="form-foot">
+            <button class="btn btn--solid" type="submit">send message <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+            <p class="form-status" role="status" aria-live="polite">* required</p>
+          </div>
+        </form>
       </div>
 
-      <section class="faq-section">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-          <div class="faq-item">
-            <h3>Are you available for collaborations?</h3>
-            <p>
-              Yes! I'm always interested in working with other students and
-              creatives on interesting projects. Whether it's for a class
-              assignment or a personal project, I'd love to hear about it.
-            </p>
-          </div>
-          <div class="faq-item">
-            <h3>What design software do you use?</h3>
-            <p>
-              I primarily work with Adobe Creative Suite (Photoshop,
-              Illustrator) and Figma for UI/UX projects. I'm also
-              constantly learning new tools and techniques.
-            </p>
-          </div>
-          <div class="faq-item">
-            <h3>Do you do commissions?</h3>
-            <p>
-              I'm open to taking on small design projects as I continue building
-              my portfolio. Feel free to reach out with your idea and we can
-              discuss if it's a good fit!
-            </p>
-          </div>
+      <section class="faq wrap" aria-labelledby="faq-title">
+        <div class="section-head">
+          <h2 class="section-title" id="faq-title" style="--dot: var(--mint)" data-split data-reveal="words">good to know</h2>
+        </div>
+        <div class="faq__list">
+          <details name="faq">
+            <summary>Are you open to a job, internship or collaboration?</summary>
+            <p>Yes. I’m open to opportunities and I like working with other creatives, whether that’s a role in a team, an internship or a project together. Send me a message and tell me about it.</p>
+          </details>
+          <details name="faq">
+            <summary>What tools do you design with?</summary>
+            <p>Figma for UI/UX, Illustrator and Photoshop for brand and print work, and After Effects, Premiere, TouchDesigner and Ableton for motion, sound and installations. I’m always picking up new tools along the way.</p>
+          </details>
+          <details name="faq">
+            <summary>Do you take on freelance projects?</summary>
+            <p>I’m open to smaller design projects next to my studies. Reach out with your idea and we can see if it’s a good fit.</p>
+          </details>
         </div>
       </section>
     </main>
 
-    <footer class="main-footer">
-      <div class="footer-mega" aria-hidden="true">RENS KOSTER</div>
-      <div class="footer-content">
-        <div class="footer-main">
-          <div class="footer-brand">
-            <h3>Let's Connect</h3>
-            <p>Open to collaborations and learning opportunities</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Navigate</h4>
-              <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-              </ul>
-            </div>
-            <div class="footer-column">
-              <h4>Connect</h4>
-              <ul>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                  <a href="https://www.instagram.com/rens_k.s/" target="_blank"
-                    >Instagram</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/rens-koster-11b3662b2/"
-                    target="_blank"
-                    >LinkedIn</a
-                  >
-                </li>
-              </ul>
-            </div>    
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Portfolio. All rights reserved.</p>
-          <p>Designed & Developed with passion</p>
-        </div>
-      </div>
-    </footer>
-
-    <script src="scroll-fx.js"></script>
-
-    <script src="script.js"></script>
-    <script type="module" src="riso-bg.js"></script>
+    <footer class="site-footer"></footer>
   </body>
 </html>
