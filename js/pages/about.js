@@ -1,20 +1,14 @@
-// About: the pinned intro (title lifts, card and 3D heads come in, words
-// light up as you read), the timeline that draws itself and the skill deck
-// that fans out as it scrolls into view or when you hover it.
+// About: the row of 3D heads, the timeline that draws itself as you scroll
+// and the skill deck that fans out as it comes into view or when you hover it.
 
-import { $, $$, clamp, easeOut, progress, reducedMotion } from "../lib/utils.js";
+import { $, $$, clamp, reducedMotion } from "../lib/utils.js";
 import { onFrame, scroll } from "../lib/ticker.js";
-import { splitWords } from "../ui/reveal.js";
 import { dimShapes } from "../ui/shapes.js";
 
 export function init() {
-  initIntro();
   initTimeline();
   initSkills();
-  // the shapes calm down once the pinned intro is over and the reading starts
-  const intro = $(".about-intro");
-  const introEnd = () => (intro ? intro.offsetHeight - scroll.vh : 0);
-  dimShapes({ from: introEnd, to: () => introEnd() + scroll.vh * 0.6 });
+  dimShapes();
 
   const heads = $(".heads");
   if (heads) {
@@ -26,7 +20,7 @@ export function init() {
 
 /** Eases a value towards whatever `read()` returns, calling `write()` when it changes. */
 function follow(read, write, ease = 0.12) {
-  let value = read(); // refreshing halfway down shouldn't replay anything
+  let value = read(); // reopening the page halfway down shouldn't replay anything
   write(value);
   onFrame(() => {
     const target = read();
@@ -35,47 +29,6 @@ function follow(read, write, ease = 0.12) {
     if (next === value) return;
     value = next;
     write(value);
-  });
-}
-
-function initIntro() {
-  const intro = $(".about-intro");
-  if (!intro) return;
-  const card = $(".about-card", intro);
-  const words = $$(".about-card p", intro).flatMap((p) => {
-    splitWords(p);
-    return $$(".word", p);
-  });
-  const pinned = matchMedia("(min-width: 961px) and (min-height: 640px)");
-
-  // 0..1 through the pinned stretch (or, unpinned, as the card moves up the screen)
-  const reading = () => {
-    if (reducedMotion) return 1;
-    if (!pinned.matches) {
-      const rect = card.getBoundingClientRect();
-      return clamp((scroll.vh * 0.85 - rect.top) / (rect.height * 0.8 + scroll.vh * 0.1));
-    }
-    return clamp(-intro.getBoundingClientRect().top / (intro.offsetHeight - scroll.vh));
-  };
-
-  let lastLit = -1;
-  follow(reading, (p) => {
-    if (pinned.matches && !reducedMotion) {
-      intro.style.setProperty("--a1", easeOut(progress(p, 0, 0.2)).toFixed(4));
-      intro.style.setProperty("--a2", easeOut(progress(p, 0.12, 0.36)).toFixed(4));
-    } else {
-      intro.style.removeProperty("--a1");
-      intro.style.removeProperty("--a2");
-    }
-    const read = pinned.matches ? progress(p, 0.32, 0.9) : p;
-    const key = Math.round(read * 1000);
-    if (key === lastLit) return;
-    lastLit = key;
-    const soft = 5; // words in the fading edge
-    words.forEach((word, i) => {
-      const lit = clamp((read * (words.length + soft) - i) / soft);
-      word.style.setProperty("--lit", (0.2 + 0.8 * lit).toFixed(3));
-    });
   });
 }
 

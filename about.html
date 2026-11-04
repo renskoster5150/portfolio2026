@@ -36,28 +36,45 @@
     <a class="skip-link" href="#main">skip to content</a>
     <header class="site-header"></header>
 
-    <main id="main">
-      <section class="about-intro" aria-labelledby="about-title">
-        <div class="about-intro__stage">
-          <h1 class="page-title" id="about-title"><span class="title-line">about</span> <span class="title-line sticker">me</span></h1>
-          <div class="about-card">
-            <h2>ux &amp; visual design student</h2>
-            <p>
-              My name is Rens Koster, and I am a 22-year-old Communication and Multimedia Design student with a
-              strong focus on visual and UX design. I enjoy creating digital experiences that are clear, engaging
-              and easy to use. In my projects I focus on understanding users first: I like doing research, creating
-              personas and testing designs, to make sure my work actually works in real life, not just on screen.
-            </p>
-            <p>
-              Besides design, I am into music, movies, gaming and sports. These interests feed my creativity and
-              help me look at problems from different angles. And yes, I am always happy to talk about them. Just
-              send me a message.
-            </p>
+    <main id="main" class="page">
+      <header class="page-head wrap">
+        <h1 class="page-title" data-split data-reveal="words">
+          <span class="title-line">about</span>
+          <span class="title-line sticker">me</span>
+        </h1>
+      </header>
+
+      <section class="about wrap" aria-labelledby="about-role">
+        <dl class="about__facts" data-stagger>
+          <div data-reveal="up"><dt>name</dt><dd>Rens Koster</dd></div>
+          <div data-reveal="up"><dt>age</dt><dd>22</dd></div>
+          <div data-reveal="up"><dt>based in</dt><dd>Amsterdam, the Netherlands</dd></div>
+          <div data-reveal="up"><dt>studying</dt><dd>Communication &amp; Multimedia Design, Hogeschool van Amsterdam</dd></div>
+          <div data-reveal="up"><dt>focus</dt><dd>UX and visual design</dd></div>
+          <div data-reveal="up"><dt>off-screen</dt><dd>Music, movies, gaming and sports</dd></div>
+        </dl>
+        <div class="about__text">
+          <h2 class="about__role" id="about-role" data-reveal="up">ux &amp; visual design student</h2>
+          <p class="about__lead" data-reveal="up">
+            My name is Rens Koster, a 22-year-old Communication and Multimedia Design student with a strong focus on
+            visual and UX design. I enjoy creating digital experiences that are <mark>clear, engaging and easy to use</mark>.
+          </p>
+          <p data-reveal="up">
+            In my projects I focus on <mark>understanding users first</mark>: I like doing research, creating personas
+            and testing designs, to make sure my work actually works in real life, not just on screen.
+          </p>
+          <p data-reveal="up">
+            Besides design, I am into music, movies, gaming and sports. These interests feed my creativity and help me
+            look at problems from different angles. And yes, I am always happy to talk about them. Just send me a message.
+          </p>
+          <div class="actions" data-reveal="up">
+            <a class="btn btn--solid" href="projects.html">see my work <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+            <a class="btn" href="contact.html">send me a message</a>
           </div>
-          <div class="heads" role="img" aria-label="A row of riso-printed 3D scans of Rens"><canvas aria-hidden="true"></canvas></div>
-          <p class="about-intro__hint" aria-hidden="true">scroll</p>
         </div>
       </section>
+
+      <div class="heads" role="img" aria-label="A row of riso-printed 3D scans of Rens, drifting by"><canvas aria-hidden="true"></canvas></div>
 
       <section class="section wrap" aria-labelledby="timeline-title">
         <div class="section-head">
